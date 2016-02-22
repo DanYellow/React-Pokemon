@@ -42,11 +42,15 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
     var _this = self;
 
     var pokemonNodes = [];
-    // console.log(this.state, this.props.filterText);
+    
     if (this.state.data.length) {
-      var searchValue = this.props.filterText;
+      var searchValue = this.props.filterText.toLowerCase();
+      var pokemonName = null;
+
       pokemonNodes = this.state.data.map(function(pokemon, index) {
-        if ( pokemon.name.indexOf(searchValue) === -1 || pokemon.name.indexOf(idDex) === -1 ) {
+        pokemonName = pokemon.name.toLowerCase();
+
+        if ( pokemonName.indexOf(searchValue) === -1 && pokemon.idDex.indexOf(searchValue) === -1 ) {
           return;
         };
         return (
