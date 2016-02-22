@@ -7,8 +7,8 @@ var Pokemon = React.createClass({
     // If the type of `name` doesn't match React throws an error. Hourra !
     name: React.PropTypes.string
   },
-  componentWillMount: function() {
-    //console.log('78569');
+  componentDidMount: function() {
+    console.log('78569');
   },
   handleClick: function(event) {
     console.log('irgjierger');

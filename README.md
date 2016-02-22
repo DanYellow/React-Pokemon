@@ -1,6 +1,8 @@
 # React-Pokemon
 A Wonderful Pokedex but this time with ReactJS
 
+Inspired by : https://facebook.github.io/react/docs/thinking-in-react.html
+
 # How to start
 
 - In your terminal : npm i

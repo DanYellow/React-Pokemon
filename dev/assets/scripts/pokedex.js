@@ -5,6 +5,7 @@ var _       = require('underscore');
 var Helpers = require('./utils');
 var Pokemon = require('./pokemon');
 var Modal   = require('./modal');
+var Loader  = require('./loader');
 
 
 /** @jsx React.DOM */
@@ -16,7 +17,8 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
   getInitialState: function() {
     return {
       data: [],
-      filterText: ''
+      filterText: '',
+      isLoading: true
     };
   },
   loadCommentsFromServer: function() {
@@ -50,8 +52,6 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
       pokemonNodes = this.state.data.map(function(pokemon, index) {
         pokemonName = pokemon.name.toLowerCase();
 
-
-        
         // #######  #####  ####### #     # #######    #     # ####### ######  ####### 
         //    #    #     # #       #     # #     #    ##   ## #     # #     # #       
         //    #    #       #       #     # #     #    # # # # #     # #     # #       
@@ -72,16 +72,21 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
           <Pokemon key={index} name={pokemon.name} idDex={pokemon.idDex}></Pokemon>
         );
       });
-      console.log("okk");
+      return (
+        <div>
+          <p>{ this.state.data.length} results</p>
+          <ul className="list-unstyled pokedex">
+            {pokemonNodes}
+          </ul>
+        </div>
+      );
     } else {
-      console.log('loading...');
+      return (
+        <Loader />
+      );
     }
+
     
-    return (
-      <ul className="list-unstyled pokedex">
-        {pokemonNodes}
-      </ul>
-    );
   },
 
   sanitizeWSDatas: function (datas, region) {
