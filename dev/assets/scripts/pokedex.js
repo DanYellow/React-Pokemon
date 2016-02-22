@@ -77,7 +77,8 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
 
     var pokemonNodes = [];
     var pokemonFiltered = [];
-    
+
+
     if (this.state.data.length) {
       var searchValue = this.props.filterText.toLowerCase();
       var pokemonName = null;

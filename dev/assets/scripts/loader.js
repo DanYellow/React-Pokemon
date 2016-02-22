@@ -9,7 +9,10 @@ var Loader = React.createClass({
   render: function() { 
     return (
       <div className="loader">
-        <img src="assets/images/pika-loader-mini.gif" />
+        <figure className="indicator">
+          <img src="assets/images/pika-loader-mini.gif" />
+          <figcaption>Loading</figcaption>
+        </figure>
       </div>
     );
   } 
