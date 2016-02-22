@@ -50,9 +50,24 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
       pokemonNodes = this.state.data.map(function(pokemon, index) {
         pokemonName = pokemon.name.toLowerCase();
 
-        if ( pokemonName.indexOf(searchValue) === -1 && pokemon.idDex.indexOf(searchValue) === -1 ) {
+
+        
+        // #######  #####  ####### #     # #######    #     # ####### ######  ####### 
+        //    #    #     # #       #     # #     #    ##   ## #     # #     # #       
+        //    #    #       #       #     # #     #    # # # # #     # #     # #       
+        //    #     #####  #####   ####### #     #    #  #  # #     # #     # #####   
+        //    #          # #       #     # #     #    #     # #     # #     # #       
+        //    #    #     # #       #     # #     #    #     # #     # #     # #       
+        //    #     #####  ####### #     # #######    #     # ####### ######  ####### 
+                                                                                   
+        if ( searchValue === "tseho" && pokemon.idDex <= 151 ) {
+          return <Pokemon key={index} name={pokemon.name} idDex={pokemon.idDex}></Pokemon>;
+        };
+
+        if (pokemonName.indexOf(searchValue) === -1 && pokemon.idDex.indexOf(searchValue) === -1 ) {
           return;
         };
+
         return (
           <Pokemon key={index} name={pokemon.name} idDex={pokemon.idDex}></Pokemon>
         );
