@@ -11,17 +11,19 @@ var Pokemon = React.createClass({
   componentDidMount: function() {
   },
   handleClick: function(event) {
-    console.log('irgjierger');
+    // console.log('irgjierger', this.props);
+    this.props.eventDelegate(this.props); 
   },
   render: function() {
     return (
-      <li className={classNames('pokedex-entry', this.props.region)} onClick={this.handleClick}>
+      // onClick={this.handleClick}
+      <li className={classNames('pokedex-entry', {'last-pkmn': this.props.isLastRegionPkmn}, this.props.region)} >
         <a className="pokedex-entry__pkmn">
           <img src={"http://pokeapi.co/media/img/" + this.props.idDex + ".png"} height="90" />
           <p>
-            <span className="pkmn-idDex">#{ this.props.idDex } </span>
-            <span className="pkmn-name">{ this.props.name }</span>
-          </p>
+            <span className="pkmn-idDex">#{ this.props.idDex } { this.props.isLast }</span>
+            <span className="pkmn-name">{ this.props.name }</span> 
+          </p> 
         </a>
       </li>
     );

@@ -37,6 +37,51 @@
   font-style: 0;
   padding: 0 20px;
 
+  li.pokedex-header {
+    border-bottom: 2px solid transparent;
+    padding: 30px 0 0;
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 35px;
+    text-transform: capitalize;
+
+    &.kanto {
+      $color: #764ab9;
+
+      border-color: #764ab9;
+    }
+
+    &.johto {
+      $color: #849491;
+
+      border-color: $color;
+    }
+
+    &.hoenn {
+      $color: #03821c;
+
+      border-color: $color;
+    }
+
+    &.sinnoh {
+      $color: #007a99;
+
+      border-color: $color;
+    }
+
+    &.unys {
+      $color: #0d6cfc;
+
+      border-color: $color;
+    }
+
+    &.kalos {
+      $color: #c79dff;
+
+      border-color: $color;
+    }
+  }
+
   li.pokedex-entry {
     display: inline-block;
     font-style: 12px;
@@ -47,6 +92,16 @@
     vertical-align: top;
 
     $amountDarken: 20%;
+
+    &.last-pkmn {
+      &:after {
+        content: '.';
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+      } 
+    }
 
     &.kanto {
       $color: #764ab9;
