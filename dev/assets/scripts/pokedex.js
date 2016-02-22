@@ -15,10 +15,21 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
    */
   // Lifecycle methods
   getInitialState: function() {
+    var kantoRange  = { 'name': 'kanto', 'range': [1, 151] };
+    var johtoRange  = { 'name': 'johto', 'range': [152, 251] };
+    var hoennRange  = { 'name': 'hoenn', 'range': [252, 386] };
+    var sinnohRange = { 'name': 'sinnoh', 'range': [387, 493] };
+    var unysRange   = { 'name': 'unys', 'range': [494, 649] };
+    var kalosRange  = { 'name': 'kalos', 'range': [650, 721] };
+
+
+    var regions = [kantoRange, johtoRange, hoennRange, sinnohRange, unysRange, kalosRange];
+
     return {
       data: [],
       filterText: '',
-      isLoading: true
+      isLoading: true,
+      regions: regions
     };
   },
   loadCommentsFromServer: function() {
@@ -40,17 +51,27 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
     this.loadCommentsFromServer();
     console.log('Pokédex set');
   },
+  /**
+   * An utiliy method to render aPokmon
+   * @return {[type]} [description]
+   */
+  renderPokemon: function(obj) {
+    return <Pokemon key={obj.index} name={obj.pokemon.name} idDex={obj.pokemon.idDex} region={obj.pokemon.region}></Pokemon>
+  },
   render: function() {
-    var _this = self;
+    var _this = this;
 
     var pokemonNodes = [];
+    var pokemonFiltered = [];
     
     if (this.state.data.length) {
       var searchValue = this.props.filterText.toLowerCase();
       var pokemonName = null;
+      var obj = {};
 
-      pokemonNodes = this.state.data.map(function(pokemon, index) {
+      pokemonFiltered = this.state.data.filter(function(pokemon, index) {
         pokemonName = pokemon.name.toLowerCase();
+
 
         // #######  #####  ####### #     # #######    #     # ####### ######  ####### 
         //    #    #     # #       #     # #     #    ##   ## #     # #     # #       
@@ -58,23 +79,27 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
         //    #     #####  #####   ####### #     #    #  #  # #     # #     # #####   
         //    #          # #       #     # #     #    #     # #     # #     # #       
         //    #    #     # #       #     # #     #    #     # #     # #     # #       
-        //    #     #####  ####### #     # #######    #     # ####### ######  ####### 
-                                                                                   
+        //    #     #####  ####### #     # #######    #     # ####### ######  #######
         if ( searchValue === "tseho" && pokemon.idDex <= 151 ) {
-          return <Pokemon key={index} name={pokemon.name} idDex={pokemon.idDex}></Pokemon>;
-        };
+          return true;
+        }
 
-        if (pokemonName.indexOf(searchValue) === -1 && pokemon.idDex.indexOf(searchValue) === -1 ) {
-          return;
+        if (pokemonName.indexOf(searchValue) > -1 || pokemon.idDex.indexOf(searchValue) > -1 ) {
+          return true;
         };
-
-        return (
-          <Pokemon key={index} name={pokemon.name} idDex={pokemon.idDex}></Pokemon>
-        );
+        return false;
       });
+   
+      pokemonNodes = pokemonFiltered.map(function(pokemon, index) {        
+        obj.index = index;
+        obj.pokemon = pokemon;
+
+        return _this.renderPokemon(obj);
+      });
+
       return (
         <div>
-          <p>{ this.state.data.length} results</p>
+          <p className="nb-results">{ pokemonNodes.length} results</p>
           <ul className="list-unstyled pokedex">
             {pokemonNodes}
           </ul>
@@ -90,15 +115,16 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
   },
 
   sanitizeWSDatas: function (datas, region) {
+    var _this = this;
     var pkmnArray = datas.map(function(pkmn, index) {
       var idDex = Helpers.idDex(pkmn);
-      pkmn["idDex"] = idDex;
-      pkmn["sprite"] = `http://pokeapi.co/media/img/${idDex}.png`
+      pkmn['idDex'] = idDex;
+      pkmn['sprite'] = `http://pokeapi.co/media/img/${idDex}.png`
       
       // We assignate to the Pokemon its regions (aka his generation)
-      _.each(self.regions, (val) => {
+      _.each(_this.state.regions, (val) => {
         if (Helpers.inRange(idDex, val.range[0], val.range[1])) {
-          pkmn["region"] = val.name;
+          pkmn['region'] = val.name;
           return true;
         };
       });
@@ -108,7 +134,7 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
 
     // We remove extra transformations (Mega-Evolutions, Forms-A/B/C/Whatever)
     pkmnArray = pkmnArray.filter(function(pkmn) {
-      if (pkmn["idDex"] > 721) {
+      if (pkmn['idDex'] > 721) {
         return false;
       } else {
         return true;

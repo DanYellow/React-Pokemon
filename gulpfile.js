@@ -24,16 +24,17 @@ gulp.task('images', function () {
 });
 
 var browserify = require('browserify');
-var source = require('vinyl-source-stream');
-var babelify = require("babelify");
+var source     = require('vinyl-source-stream');
+var babelify   = require('babelify');
+var uglify     = require('gulp-uglify');
+var streamify  = require('gulp-streamify');
 
 
 gulp.task('browserify', function() {
     return browserify('./dev/assets/scripts/app.js').transform("reactify")
         .bundle()
-        //Pass desired output filename to vinyl-source-stream
         .pipe(source('app.js'))
-        // Start piping stream to tasks!
+        //.pipe(streamify(uglify()))
         .pipe(gulp.dest('./public/'));
 });
 

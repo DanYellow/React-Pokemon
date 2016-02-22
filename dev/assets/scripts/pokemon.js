@@ -1,4 +1,5 @@
 var React    = require('react');
+var classNames = require('classnames');
 
 
 /** @jsx React.DOM */
@@ -8,18 +9,17 @@ var Pokemon = React.createClass({
     name: React.PropTypes.string
   },
   componentDidMount: function() {
-    console.log('78569');
   },
   handleClick: function(event) {
     console.log('irgjierger');
   },
   render: function() {
     return (
-      <li className="pokedex-entry" onClick={this.handleClick}>
+      <li className={classNames('pokedex-entry', this.props.region)} onClick={this.handleClick}>
         <a className="pokedex-entry__pkmn">
           <img src={"http://pokeapi.co/media/img/" + this.props.idDex + ".png"} height="90" />
           <p>
-            <span className="pkmn-idDex"></span>
+            <span className="pkmn-idDex">#{ this.props.idDex } </span>
             <span className="pkmn-name">{ this.props.name }</span>
           </p>
         </a>

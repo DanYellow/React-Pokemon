@@ -1,8 +1,8 @@
 {
-  "name": "Pokedex",
+  "name": "React-Pokedex",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A wonderful Pokédex with ReactJS",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,12 +12,15 @@
     "babelify": "^7.2.0",
     "bootstrap": "^3.3.6",
     "browserify": "^13.0.0",
+    "classnames": "^2.2.3",
     "colors": "^1.1.2",
     "crossroads": "^0.12.2",
     "finalhandler": "^0.4.1",
     "gulp": "^3.9.0",
     "gulp-nunjucks-render": "^1.1.0",
     "gulp-sass": "^2.1.1",
+    "gulp-streamify": "^1.0.2",
+    "gulp-uglify": "^1.5.2",
     "gulp-watch": "^4.3.5",
     "hasher": "^1.2.0",
     "jquery": "^2.2.0",
