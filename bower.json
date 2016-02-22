@@ -1,0 +1,21 @@
+{
+  "name": "knockout-test",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "DanYellow"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/DanYellow/ko-Pokedex",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "bootstrap-sass": "~3.3.6"
+  }
+}
