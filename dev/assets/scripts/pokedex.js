@@ -22,7 +22,7 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
     var hoennRange  = { 'name': 'hoenn', 'range': [252, 386], 'generation': 'Third generation' };
     var sinnohRange = { 'name': 'sinnoh', 'range': [387, 493], 'generation': 'Fourth generation' };
     var unysRange   = { 'name': 'unys', 'range': [494, 649], 'generation': 'fifth generation' };
-    var kalosRange  = { 'name': 'kalos', 'range': [650, 718], 'generation': 'Sixth generation' };
+    var kalosRange  = { 'name': 'kalos', 'range': [650, window.maxIdDex], 'generation': 'Sixth generation' };
 
 
     var regions = [kantoRange, johtoRange, hoennRange, sinnohRange, unysRange, kalosRange];
@@ -62,8 +62,6 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
     this.props.onUserInput(
       value
     );
-
-    // $('#pkmnModal').modal('show');
   },
 
   /**
@@ -122,10 +120,10 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
         lastRegion = pokemon.region;
         pokemonNodes.push(this.renderPokemon(obj, _this));
       }.bind(this));
-
+  
       return (
         <div>
-          <p className="nb-results">{ pokemonNodes.length} results</p>
+          <p className="nb-results">{ pokemonFiltered.length} results</p>
           <ul className="list-unstyled pokedex">
             {pokemonNodes}
           </ul>
@@ -162,7 +160,7 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
 
     // We remove extra transformations (Mega-Evolutions, Forms-A/B/C/Whatever)
     pkmnArray = pkmnArray.filter(function(pkmn) {
-      if (pkmn['idDex'] > 718) {
+      if (pkmn['idDex'] > window.maxIdDex) {
         return false;
       } else {
         return true;

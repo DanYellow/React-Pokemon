@@ -8,6 +8,8 @@ var Pokedex   = require('./pokedex');
 var SearchBar = require('./search-bar');
 var Modal     = require('./modal');
 
+window.maxIdDex = 718;
+
 var PokedexContainer = React.createClass({
   getInitialState: function() {
     return {
