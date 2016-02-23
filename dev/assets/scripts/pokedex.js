@@ -17,12 +17,12 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
    */ 
   // Lifecycle methods
   getInitialState: function() {
-    var kantoRange  = { 'name': 'kanto', 'range': [1, 151] };
-    var johtoRange  = { 'name': 'johto', 'range': [152, 251] };
-    var hoennRange  = { 'name': 'hoenn', 'range': [252, 386] };
-    var sinnohRange = { 'name': 'sinnoh', 'range': [387, 493] };
-    var unysRange   = { 'name': 'unys', 'range': [494, 649] };
-    var kalosRange  = { 'name': 'kalos', 'range': [650, 718] };
+    var kantoRange  = { 'name': 'kanto', 'range': [1, 151], 'generation': 'First generation' };
+    var johtoRange  = { 'name': 'johto', 'range': [152, 251], 'generation': 'Second generation' };
+    var hoennRange  = { 'name': 'hoenn', 'range': [252, 386], 'generation': 'Third generation' };
+    var sinnohRange = { 'name': 'sinnoh', 'range': [387, 493], 'generation': 'Fourth generation' };
+    var unysRange   = { 'name': 'unys', 'range': [494, 649], 'generation': 'fifth generation' };
+    var kalosRange  = { 'name': 'kalos', 'range': [650, 718], 'generation': 'Sixth generation' };
 
 
     var regions = [kantoRange, johtoRange, hoennRange, sinnohRange, unysRange, kalosRange];
@@ -49,11 +49,12 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
   },
 
   componentDidMount: function() {
+    this.loadCommentsFromServer();
     console.log("pokédex loaded");
   },
 
   componentWillMount: function () {
-    this.loadCommentsFromServer();
+    
     console.log('Pokédex set');
   },
 
@@ -108,15 +109,15 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
       });
    
       var lastRegion = null;
-      var regionRange = null;
+      var regionDatas = null;
       pokemonFiltered.forEach(function(pokemon, index) {        
         obj.index = index;
         obj.pokemon = pokemon;
 
         // If the region name is new, we push a header component
         if (lastRegion !== pokemon.region) {
-          regionRange = _.findWhere(this.state.regions, {'name': pokemon.region}).range;
-          pokemonNodes.push(<PokedexRegionHeader name={pokemon.region} key={pokemon.region} range={regionRange} />);
+          regionDatas = _.findWhere(this.state.regions, {'name': pokemon.region});
+          pokemonNodes.push(<PokedexRegionHeader name={pokemon.region} key={pokemon.region} regionDatas={regionDatas} />);
         };
         lastRegion = pokemon.region;
         pokemonNodes.push(this.renderPokemon(obj, _this));

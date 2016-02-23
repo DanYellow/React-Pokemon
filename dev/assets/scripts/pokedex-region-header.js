@@ -7,8 +7,9 @@ var PokedexRegionHeader = React.createClass({
   render: function() { 
     return (
       <li className={classNames('pokedex-header', this.props.name)}>
+      	{this.props.regionDatas.generation + ' - ' }
         {this.props.name + ' ' }
-        ({this.props.range[0]} - {this.props.range[1]})
+        ({this.props.regionDatas.range[0]} - {this.props.regionDatas.range[1]})
       </li>
     );
   } 

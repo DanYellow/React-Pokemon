@@ -25,7 +25,7 @@ var PokedexContainer = React.createClass({
 
   pkmnClicked: function(pkmn) {
     this.setState({
-      pokemon: pkmn.datas
+      pokemon: pkmn
     });
 
     $(ReactDOM.findDOMNode(this.refs.modal)).modal();
