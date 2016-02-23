@@ -1,5 +1,5 @@
 var React               = require('react');
-var $                   = require('jquery');
+var $ = jQuery = require('jquery');
 var _                   = require('underscore');
 
 var Helpers             = require('./utils');
@@ -7,14 +7,14 @@ var Pokemon             = require('./pokemon');
 var Loader              = require('./loader');
 var PokedexRegionHeader = require('./pokedex-region-header');
 
-var Modal               = require('./modal');
+
 
 
 /** @jsx React.DOM */
 var Pokedex = React.createClass({displayName: 'Pokedex',
   /**
    * REACT METHODS
-   */
+   */ 
   // Lifecycle methods
   getInitialState: function() {
     var kantoRange  = { 'name': 'kanto', 'range': [1, 151] };
@@ -58,7 +58,11 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
   },
 
   pokemonDelegate:function(value) {
-    console.log(value);
+    this.props.onUserInput(
+      value
+    );
+
+    // $('#pkmnModal').modal('show');
   },
 
   /**
@@ -66,9 +70,7 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
    * @return {[type]} [description]
    */
   renderPokemon: function(obj, _this) {
-    return <Pokemon key={obj.index} name={obj.pokemon.name} 
-                    idDex={obj.pokemon.idDex} region={obj.pokemon.region} 
-                    isLastRegionPkmn={obj.pokemon.isLast} eventDelegate={_this.pokemonDelegate} /> 
+    return <Pokemon key={obj.index} datas={obj.pokemon} eventDelegate={_this.pokemonDelegate} /> 
 
   }.bind(this),
 

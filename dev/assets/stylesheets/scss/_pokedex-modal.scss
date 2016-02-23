@@ -1,0 +1,122 @@
+.pkmn-modal {
+  .modal-header {
+    border-bottom: none;
+    .pkmn-name {
+      vertical-align: middle;
+    }
+    .pkmn-img {
+      margin-right: 10px;
+    }
+    .pkmn-types {
+      font-size: 0;
+      margin-top: 15px;
+      li {
+        display: inline-block;
+        font-size: 12px;
+        text-transform: uppercase;
+        padding: 3px 5px;
+        margin-right: 5px;
+        border-radius: 3px;
+
+        text-shadow: 0px 1px 0px rgba(0, 0, 0, 1);
+        color: white;
+
+        // type pokemon class
+        &.poison {
+          background-color: purple;
+        }
+
+        &.grass {
+          background-color: #77c84f;
+        }
+
+        &.fire {
+          background-color: #f07f2f;
+        }
+
+        &.water {
+          background-color: blue;
+        }
+
+        &.normal {
+          background-color: #a7a777;
+        }
+
+        &.bug {
+          background-color: #a7b71f;
+        }
+
+        &.ice {
+          background-color: #97d8d8;
+        }
+
+        &.steel {
+          background-color: #b7b7d0;
+        }
+
+        &.flying {
+          background-color: #a78ff0;
+        }
+
+        &.fighting {
+          background-color: #bf2f27;
+        }
+
+        &.fairy {
+          background-color: #e4a1e1;
+        }
+
+        &.dragon {
+          background-color: #6f37f8;
+        }
+
+        &.electric {
+          background-color: #f8d02f;
+        }
+
+        &.psychic {
+          background-color: #f85787;
+        }
+
+        &.ground {
+          background-color: #e0bf67;
+        }
+
+        &.ghost {
+          background-color: #6f5797;
+        }
+
+        &.dark {
+          background-color: #6f5747;
+        }
+
+        &.rock {
+          background-color: #b79f37;
+        }
+      }
+    }
+  }
+
+  .modal-body {
+    border-top: 1px solid #E5E5E5;
+  }
+
+  .pkmn-abilities {
+    table-layout: fixed;
+  }
+
+  .pkmn-evolutions, .pkmn-abilities {
+    display: table;
+    width: 100%;
+
+    .pkmn-abilities__item {
+      text-align: center;
+      display: table-cell;
+      text-transform: capitalize;
+    }
+
+    .pkmn-evolutions__item {
+      display: table-cell;
+    }
+  }
+}

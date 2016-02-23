@@ -1,16 +1,19 @@
-var React    = require('react');
-var ReactDOM = require('react-dom');
+var React     = require('react');
+var ReactDOM  = require('react-dom');
+var $         = jQuery = require('jquery');
+var bootstrap = require('bootstrap');
 
 
-var Pokedex  = require('./pokedex');
+var Pokedex   = require('./pokedex');
 var SearchBar = require('./search-bar');
-var Modal  = require('./modal');
+var Modal     = require('./modal');
 
 var PokedexContainer = React.createClass({
   getInitialState: function() {
     return {
       filterText: '',
-      pokemon: {}
+      pokemon: {},
+      showModal: false
     };
   },
 
@@ -18,15 +21,22 @@ var PokedexContainer = React.createClass({
     this.setState({
       filterText: filterText
     });
-    console.log('handleUserInput', pokemon);
+  },
+
+  pkmnClicked: function(pkmn) {
+    this.setState({
+      pokemon: pkmn.datas
+    });
+
+    $(ReactDOM.findDOMNode(this.refs.modal)).modal();
   },
 
   render: function() {
     return (
       <div>
         <SearchBar filterText={this.state.filterText} onUserInput={this.handleUserInput} />
-        <Pokedex filterText={this.state.filterText} onUserInput={this.handleUserInput} />
-        <Modal pokemon={this.state.pokemon} />
+        <Pokedex filterText={this.state.filterText} onUserInput={this.pkmnClicked} />
+        <Modal pokemon={this.state.pokemon} ref='modal' />
       </div>
     );
   }
