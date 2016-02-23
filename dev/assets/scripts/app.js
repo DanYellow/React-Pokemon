@@ -15,7 +15,7 @@ var PokedexContainer = React.createClass({
     return {
       filterText: '',
       pokemon: {},
-      showModal: false
+      isLoading: true
     };
   },
 

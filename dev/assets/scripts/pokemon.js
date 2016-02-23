@@ -12,6 +12,12 @@ var Pokemon = React.createClass({
     // If the type of `name` doesn't match React throws an error. Hourra !
     name: React.PropTypes.string
   },
+
+  getInitialState: function () {
+    return {
+      isLoading: false
+    };
+  },
   
   componentDidMount: function() {
   },
@@ -20,7 +26,7 @@ var Pokemon = React.createClass({
     var handlerDatas = this.props.datas;
     
     var id           = this.props.datas.idDex;
- 
+  
     $.ajax({
       url: `http://pokeapi.co/api/v1/pokemon/${id}/`, 
       cache: false
@@ -28,6 +34,7 @@ var Pokemon = React.createClass({
     .done(function( pkmn ) {
       var pkmnDatas = PokemonManager.compute(pkmn);
       pkmnDatas = assign(pkmnDatas, handlerDatas);
+
       this.props.eventDelegate(pkmnDatas);
 
     }.bind(this));

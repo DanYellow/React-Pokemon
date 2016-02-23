@@ -51,8 +51,8 @@ var PokemonManager = (function() {
 
     var tempArray = _.map(evolutions, function(evol) {
       idDex = Helpers.idDex(evol); 
-      evol['sprite'] = `http://pokeapi.co/media/img/${idDex}.png`
-      evol['idDex'] = idDex;
+      evol.sprite = `http://pokeapi.co/media/img/${idDex}.png`;
+      evol.idDex = idDex;
 
       return evol;
     });

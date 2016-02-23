@@ -99,6 +99,13 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
           return true;
         }
 
+
+        // Search by region name
+        if (pokemon.region === searchValue) {
+          return true;
+        } 
+
+        // Classic search by Pokemon name or Pokemon's ID dex;
         if (pokemonName.indexOf(searchValue) > -1 || pokemon.idDex.indexOf(searchValue) > -1 ) {
           return true;
         }
@@ -106,10 +113,10 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
         return false;
       });
    
-      var lastRegion = null;
+      var lastRegion  = null;
       var regionDatas = null;
       pokemonFiltered.forEach(function(pokemon, index) {        
-        obj.index = index;
+        obj.index   = index;
         obj.pokemon = pokemon;
 
         // If the region name is new, we push a header component
@@ -120,7 +127,7 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
         lastRegion = pokemon.region;
         pokemonNodes.push(this.renderPokemon(obj, _this));
       }.bind(this));
-  
+
       return (
         <div>
           <p className="nb-results">{ pokemonFiltered.length} results</p>
@@ -139,14 +146,14 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
   sanitizeWSDatas: function (datas, region) {
     var _this = this;
     var pkmnArray = datas.map(function(pkmn, index) {
-      var idDex = Helpers.idDex(pkmn);
-      pkmn['idDex'] = idDex;
-      pkmn['sprite'] = `http://pokeapi.co/media/img/${idDex}.png`
+      var idDex   = Helpers.idDex(pkmn);
+      pkmn.idDex  = idDex;
+      pkmn.sprite = `http://pokeapi.co/media/img/${idDex}.png`;
       
       // We assignate to the Pokemon its regions (aka his generation)
       _.each(_this.state.regions, (val) => {
         if (Helpers.inRange(idDex, val.range[0], val.range[1])) {
-          pkmn['region'] = val.name;
+          pkmn.region = val.name;
           // If the extreme boundary is equals to val.range[1] so the pokemon is the last of its region
           pkmn.isLast = (String(idDex) === String(val.range[1])) ? true : false;
 
@@ -160,7 +167,7 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
 
     // We remove extra transformations (Mega-Evolutions, Forms-A/B/C/Whatever)
     pkmnArray = pkmnArray.filter(function(pkmn) {
-      if (pkmn['idDex'] > window.maxIdDex) {
+      if (pkmn.idDex > window.maxIdDex) {
         return false;
       } else {
         return true;
