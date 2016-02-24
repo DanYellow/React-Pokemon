@@ -1,6 +1,6 @@
 var React               = require('react');
-var ReactDOM   = require('react-dom');
-var $ = jQuery = require('jquery');
+var ReactDOM            = require('react-dom');
+var $                   = jQuery = require('jquery');
 var _                   = require('underscore');
 
 
@@ -8,11 +8,6 @@ var Helpers             = require('./utils');
 var Pokemon             = require('./pokemon');
 var Loader              = require('./loader');
 var PokedexRegionHeader = require('./pokedex-region-header');
-
-
-var handleClick = function(i, props) {
-  console.log('You clicked: ');
-}
 
 
 
@@ -29,7 +24,6 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
     var sinnohRange = { 'name': 'sinnoh', 'range': [387, 493], 'generation': 'Fourth generation' };
     var unysRange   = { 'name': 'unys', 'range': [494, 649], 'generation': 'fifth generation' };
     var kalosRange  = { 'name': 'kalos', 'range': [650, window.maxIdDex], 'generation': 'Sixth generation' };
-
 
     var regions = [kantoRange, johtoRange, hoennRange, sinnohRange, unysRange, kalosRange];
 
@@ -56,10 +50,6 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
 
   componentDidMount: function() {
     this.loadCommentsFromServer();
-
-    console.log(ReactDOM.findDOMNode(this) );
-
-    this.props.loadingDelegate(false);
   },
 
   componentWillMount: function () {
@@ -139,7 +129,7 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
 
         // http://facebook.github.io/react/tips/communicate-between-components.html
         // http://stackoverflow.com/questions/24103072/reactjs-onclick-handler-not-firing-when-placed-on-a-child-component
-        // This works only for diff 
+        // This works only for divs 
         pokemonNodes.push(this.renderPokemon(obj, _this));
       }.bind(this));
 
