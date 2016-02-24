@@ -199,28 +199,15 @@ var Modal = React.createClass({displayName: 'Modal',
 
   componentDidMount: function() {
     $(ReactDOM.findDOMNode(this)).on('shown.bs.modal, show.bs.modal', this.modalLoaded);
-  }, 
+  },
 
   modalLoaded: function() {
     this.props.loadingDelegate(false);
   },
 
   render: function() {
-    var divStyle = {};
-
-    if (this.props.isShowing) {
-      divStyle = {
-        paddingRight: '15px',
-        display: 'block'
-      }
-    } else {
-      divStyle = {
-        display: 'none'
-      }
-    }
-
     return (
-      <div className={classNames('modal fade pkmn-modal')} style={divStyle} tabIndex="-1" role="dialog" id="pkmnModal">
+      <div className={classNames('modal fade pkmn-modal')} tabIndex="-1" role="dialog" id="pkmnModal">
         <div className="modal-dialog">
           <div className="modal-content">
             <ModalHeader datas={this.props.pokemon} />
