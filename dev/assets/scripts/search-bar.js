@@ -1,13 +1,15 @@
 var React    = require('react');
+// var $         = jQuery = require('jquery');
 
 /** @jsx React.DOM */
 var SearchBar = React.createClass({
   getInitialState: function() {
     return { filterText: 'Hello!' };
   },
-  handleChange: function() {
+
+  handleChange: function(e) {
     this.props.onUserInput(
-      this.refs.filterTextInput.value
+      e.currentTarget.value
     );
   },
 
@@ -17,12 +19,11 @@ var SearchBar = React.createClass({
 
   render: function() { 
     return (
-      <form>
+      <form onSubmit={this.submit}>
         <input type="text" placeholder="Search..." 
                className="pkmn-searchbar" value={ this.props.filterText }
                defaultValue="Pikachuchu"
-               ref="filterTextInput" 
-               onChange={this.handleChange} onSubmit={this.submit}/>
+               onChange={this.handleChange}/>
       </form>
     );
   } 
