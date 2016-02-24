@@ -29,14 +29,16 @@ var ModalHeader = React.createClass({
     return (
       <div className="modal-header">
         <button type="button" className="close" data-dismiss="modal">&times;</button>
-        <img width="100%" src={this.props.datas.sprite} className={classNames(imgClassName)}/>
+        <button className="reset-btn pkmn-img-zoomed-btn" onClick={this.biggerPokemon}>
+          <img width="100%" src={this.props.datas.sprite} className={classNames(imgClassName)}/>
+        </button>
 
         <h4 className="modal-title">
           <button className="reset-btn" onClick={this.biggerPokemon}><img className="pkmn-img" height="40" src={this.props.datas.sprite}/></button>
           <span className="pkmn-name"></span>
           <p className="pkmn-name">
             <span>{this.props.datas.name}</span>
-            <span className="h5">{this.props.datas.idDex}</span>
+            <span className="h5">#{this.props.datas.idDex}</span>
           </p>
         </h4>
         <Types datas={this.props.datas.types} />
