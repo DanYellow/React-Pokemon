@@ -3,22 +3,43 @@ var $          = require('jquery');
 var _          = require('underscore');
 var classNames = require('classnames');
 var ReactDOM   = require('react-dom');
-require('bootstrap');
+var classNames     = require('classnames');
+var bootstrap = require('bootstrap');
 
 var Helpers    = require('./utils');
 var Pokemon    = require('./pokemon');
 
 /** @jsx React.DOM */
 var ModalHeader = React.createClass({
+  getInitialState: function() {
+    return {
+      isShowingBigger: false
+    };
+  },
+
+  biggerPokemon: function () {
+    this.setState({
+      isShowingBigger: !this.state.isShowingBigger
+    })
+  },
+
   render: function() {
+    var imgClassName = 'pkmn-img-zoomed '
+    imgClassName += this.state.isShowingBigger ? 'show' : null;
     return (
       <div className="modal-header">
-          <button type="button" className="close" data-dismiss="modal">&times;</button>
-          <h4 className="modal-title">
-            <img className="pkmn-img" height="40" src={this.props.datas.sprite}/> 
-            <span className="pkmn-name">{this.props.datas.name}</span>
-          </h4>
-          <Types datas={this.props.datas.types} />
+        <button type="button" className="close" data-dismiss="modal">&times;</button>
+        <img width="100%" src={this.props.datas.sprite} className={classNames(imgClassName)}/>
+
+        <h4 className="modal-title">
+          <button className="reset-btn" onClick={this.biggerPokemon}><img className="pkmn-img" height="40" src={this.props.datas.sprite}/></button>
+          <span className="pkmn-name"></span>
+          <p className="pkmn-name">
+            <span>{this.props.datas.name}</span>
+            <span className="h5">{this.props.datas.idDex}</span>
+          </p>
+        </h4>
+        <Types datas={this.props.datas.types} />
       </div>
     )
   }

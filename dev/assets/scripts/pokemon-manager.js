@@ -7,12 +7,6 @@ var Helpers = require('./utils');
  */
 
 var PokemonManager = (function() {
-
-  //args: an object containing arguments for the singleton
-  function PokedexManagerSingleton() {
-  }
-
-
   /**
    * @desc get Pokemon's types
    *
@@ -110,6 +104,7 @@ var PokemonManager = (function() {
      * @return {[type]}       [description]
      */
     compute: function(datas) {
+      console.dir(datas);
       datas.moves      = moves(datas.moves);
       
       var idDex        = datas.national_id;

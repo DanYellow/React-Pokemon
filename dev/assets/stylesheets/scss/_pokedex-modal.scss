@@ -1,12 +1,30 @@
 .pkmn-modal {
   .modal-header {
     border-bottom: none;
+
+    .modal-title {
+      display: table;
+      > * {
+        display: table-cell;
+      }
+    }
+
     .pkmn-name {
       vertical-align: middle;
+      text-transform: capitalize;
+
+      > span:first-child {
+        &:after {
+          content:"\a";
+          white-space: pre;
+        }
+      }
     }
+
     .pkmn-img {
       margin-right: 10px;
     }
+
     .pkmn-types {
       font-size: 0;
       margin-top: 15px;
@@ -103,6 +121,17 @@
 
   .pkmn-abilities {
     table-layout: fixed;
+  }
+
+  .panel-title {
+    text-transform: capitalize;
+  }
+
+  .pkmn-img-zoomed {
+    display: none;
+    &.show {
+      display: inline;
+    }
   }
 
   .pkmn-evolutions, .pkmn-abilities {

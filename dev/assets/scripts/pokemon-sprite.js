@@ -2,7 +2,7 @@ var React = require('react');
 
 var _     = require('underscore');
 
-
+// Inspired by http://andrewhfarmer.com/detect-image-load/
 
 var endRenderingLastItem = function(_this) {
   // The last pokemon is rendered
@@ -20,7 +20,7 @@ var PokemonSprite = React.createClass({
   },
 
   handleImageLoaded: function() {
-    this.props.pokemonDelegate();
+    // this.props.pokemonDelegate();
   },
  
   handleImageErrored: function(e) {

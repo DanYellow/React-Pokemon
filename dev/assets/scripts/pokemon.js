@@ -31,7 +31,7 @@ var Pokemon = React.createClass({
   // },
   
   componentDidMount: function() {
-    
+    endRendering(this);
   },
 
   endRenderingList: function() {
@@ -62,7 +62,6 @@ var Pokemon = React.createClass({
 
   pokemonDelegate: function() {
     endRendering(this);
-    console.log('pokeapi');
   },
 
   render: function() {
