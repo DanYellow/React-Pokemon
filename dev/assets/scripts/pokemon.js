@@ -4,7 +4,7 @@ var $              = jQuery = require('jquery');
 var assign         = require('object-assign');
 
 var PokemonManager = require('./pokemon-manager');
-
+var Request        = require('superagent');
 
 /** @jsx React.DOM */
 var Pokemon = React.createClass({
@@ -13,31 +13,36 @@ var Pokemon = React.createClass({
     name: React.PropTypes.string
   },
 
-  getInitialState: function () {
-    return {
-      isLoading: false
-    };
-  },
+  // getInitialState: function () {
+  //   return {
+  //     data: {}
+  //   };
+  // },
   
   componentDidMount: function() {
   },
 
-  handleClick: function(event) {
+  handleClick: function(e) {
     var handlerDatas = this.props.datas;
-    
     var id           = this.props.datas.idDex;
-  
-    $.ajax({
-      url: `http://pokeapi.co/api/v1/pokemon/${id}/`, 
-      cache: false
-    })
-    .done(function( pkmn ) {
-      var pkmnDatas = PokemonManager.compute(pkmn);
-      pkmnDatas = assign(pkmnDatas, handlerDatas);
 
-      this.props.eventDelegate(pkmnDatas);
+    console.log(this.props);
+    this.props.loadingDelegate(true);
 
-    }.bind(this));
+    Request
+      .get(`http://pokeapi.co/api/v1/pokemon/${id}/`)
+      .set('Accept', 'application/json')
+      .end(function(err, res){
+        if (err || !res.ok) {
+          alert('Oh no! error');
+        } else {
+          var pkmn = res.body;
+          var pkmnDatas = PokemonManager.compute(pkmn);
+          pkmnDatas = assign(pkmnDatas, handlerDatas);
+
+          this.props.pokedexDelegate(pkmnDatas);
+       }
+      }.bind(this));
   },
   render: function() {
     return (

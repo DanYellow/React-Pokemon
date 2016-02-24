@@ -1,12 +1,18 @@
 var React               = require('react');
+var ReactDOM   = require('react-dom');
 var $ = jQuery = require('jquery');
 var _                   = require('underscore');
+
 
 var Helpers             = require('./utils');
 var Pokemon             = require('./pokemon');
 var Loader              = require('./loader');
 var PokedexRegionHeader = require('./pokedex-region-header');
 
+
+var handleClick = function(i, props) {
+  console.log('You clicked: ');
+}
 
 
 
@@ -50,7 +56,10 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
 
   componentDidMount: function() {
     this.loadCommentsFromServer();
-    console.log("pokédex loaded");
+
+    console.log(ReactDOM.findDOMNode(this) );
+
+    this.props.loadingDelegate(false);
   },
 
   componentWillMount: function () {
@@ -58,10 +67,12 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
     console.log('Pokédex set');
   },
 
-  pokemonDelegate:function(value) {
-    this.props.onUserInput(
-      value
-    );
+  pokemonDelegate: function(value) {
+    this.props.appDelegate(value);
+  },
+
+  loadingDelegate: function(isLoading) {
+    this.props.loadingDelegate(isLoading);
   },
 
   /**
@@ -69,9 +80,9 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
    * @return {[type]} [description]
    */
   renderPokemon: function(obj, _this) {
-    return <Pokemon key={obj.index} datas={obj.pokemon} eventDelegate={_this.pokemonDelegate} /> 
+    return <Pokemon key={obj.index} datas={obj.pokemon} pokedexDelegate={_this.pokemonDelegate} loadingDelegate={_this.loadingDelegate} /> 
 
-  }.bind(this),
+  },
 
   render: function() {
     var _this = this;
@@ -125,6 +136,10 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
           pokemonNodes.push(<PokedexRegionHeader name={pokemon.region} key={pokemon.region} regionDatas={regionDatas} />);
         };
         lastRegion = pokemon.region;
+
+        // http://facebook.github.io/react/tips/communicate-between-components.html
+        // http://stackoverflow.com/questions/24103072/reactjs-onclick-handler-not-firing-when-placed-on-a-child-component
+        // This works only for diff 
         pokemonNodes.push(this.renderPokemon(obj, _this));
       }.bind(this));
 
@@ -138,7 +153,7 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
       );
     } else {
       return (
-        <Loader />
+        null
       );
     }
   },
@@ -182,6 +197,5 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
     return pkmnArray;
   } 
 });
-
 
 module.exports = Pokedex;

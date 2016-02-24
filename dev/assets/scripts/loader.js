@@ -3,7 +3,7 @@ var React    = require('react');
 /** @jsx React.DOM */
 var Loader = React.createClass({
   componentWillUnmount: function() {
-    console.log("hello");
+    // console.log("hello");
   },
 
   render: function() { 

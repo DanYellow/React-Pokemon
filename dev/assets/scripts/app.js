@@ -1,7 +1,8 @@
 var React     = require('react');
 var ReactDOM  = require('react-dom');
 var $         = jQuery = require('jquery');
-var bootstrap = require('bootstrap');
+
+var Loader    = require('./loader');
 
 
 var Pokedex   = require('./pokedex');
@@ -33,12 +34,21 @@ var PokedexContainer = React.createClass({
     $(ReactDOM.findDOMNode(this.refs.modal)).modal();
   },
 
+  isLoading: function(isLoadingBOOL) {
+    this.setState({
+      isLoading: isLoadingBOOL
+    });
+  },
+
   render: function() {
     return (
       <div>
         <SearchBar filterText={this.state.filterText} onUserInput={this.handleUserInput} />
-        <Pokedex filterText={this.state.filterText} onUserInput={this.pkmnClicked} />
-        <Modal pokemon={this.state.pokemon} ref='modal' />
+        <Pokedex filterText={this.state.filterText} appDelegate={this.pkmnClicked} loadingDelegate={this.isLoading}/>
+        
+        <Modal pokemon={this.state.pokemon} ref="modal" loadingDelegate={this.isLoading} isShowing={this.state.isLoading} />
+
+        {this.state.isLoading ? <Loader /> : null}
       </div>
     );
   }
