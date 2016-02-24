@@ -50,6 +50,8 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
 
   componentDidMount: function() {
     this.loadCommentsFromServer();
+
+
   },
 
   componentWillMount: function () {
@@ -140,6 +142,7 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
             {pokemonNodes}
           </ul>
         </div>
+
       );
     } else {
       return (

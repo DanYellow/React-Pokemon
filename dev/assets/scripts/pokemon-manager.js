@@ -104,7 +104,7 @@ var PokemonManager = (function() {
      * @return {[type]}       [description]
      */
     compute: function(datas) {
-      console.dir(datas);
+      // console.dir(datas);
       datas.moves      = moves(datas.moves);
       
       var idDex        = datas.national_id;

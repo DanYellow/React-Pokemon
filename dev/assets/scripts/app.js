@@ -16,11 +16,12 @@ var PokedexContainer = React.createClass({
     return {
       filterText: '',
       pokemon: {},
-      isLoading: true
+      isLoading: true,
+      haveToShowModal: false
     };
   },
 
-  handleUserInput: function(filterText, pokemon) {
+  handleUserInput: function(filterText) {
     this.setState({
       filterText: filterText
     });
@@ -28,7 +29,8 @@ var PokedexContainer = React.createClass({
 
   pkmnClicked: function(pkmn) {
     this.setState({
-      pokemon: pkmn
+      pokemon: pkmn,
+      haveToShowModal: true
     });
 
     $(ReactDOM.findDOMNode(this.refs.modal)).modal();
@@ -46,7 +48,7 @@ var PokedexContainer = React.createClass({
         <SearchBar filterText={this.state.filterText} onUserInput={this.handleUserInput} />
         <Pokedex filterText={this.state.filterText} appDelegate={this.pkmnClicked} loadingDelegate={this.isLoading}/>
         
-        <Modal pokemon={this.state.pokemon} ref="modal" loadingDelegate={this.isLoading} isShowing={this.state.isLoading} />
+        <Modal pokemon={this.state.pokemon} loadingDelegate={this.isLoading} isShowing={this.state.haveToShowModal} />
 
         {this.state.isLoading ? <Loader /> : null}
       </div>

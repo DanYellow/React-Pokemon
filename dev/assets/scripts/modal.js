@@ -212,9 +212,10 @@ var Evolutions = React.createClass({
 });
 
 
-
+// http://stackoverflow.com/questions/28241912/bootstrap-modal-in-react-js
 var Modal = React.createClass({displayName: 'Modal',
   getInitialState: function() {
+    
     return {
       isShowing: false
     };
