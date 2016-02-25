@@ -19,15 +19,12 @@ var Modal          = require('./modal');
 window.maxIdDex = 718;
 
 var App = React.createClass({
-  componentDidMount: function() {
-  },
-
   render: function() {
     //         // {this.props.children}
-            console.log(this.props.params.idDex);
     return (
       <div>
         <ul>
+          <li><Link to="/region/kanto">Kanto</Link></li>
           <li><Link to="/region/kalos">Kalos</Link></li>
         </ul>
         <PokedexContainer idDex={this.props.params.idDex} regionName={this.props.params.regionName}/>
@@ -52,28 +49,21 @@ var PokedexContainer = React.createClass({
     });
   },
 
-  componentDidMount: function() {
-    console.log(this.props);
-    if (this.props.idDex) {
-      Request
-        .get(`http://pokeapi.co/api/v1/pokemon/${this.props.idDex}/`)
-        .set('Accept', 'application/json')
-        .end(function(err, res){
-          if (err || !res.ok) {
-            alert('Oh no! error');
-          } else {
-            var pkmn = res.body;
-            var pkmnDatas = PokemonManager.compute(pkmn);
-            // pkmnDatas = assign(pkmnDatas, handlerDatas);
+  componentWillReceiveProps: function(newProps) {
+    if (newProps.idDex) {
+      this.fetchPokemon(newProps.idDex);
+    };
 
-            this.setState({
-              pokemon: pkmnDatas,
-              haveToShowModal: true
-            });
-            console.log("gergerger");
-            $(ReactDOM.findDOMNode(this.refs.modal)).modal();
-         }
-        }.bind(this));
+    if (newProps.regionName) {
+      this.setState({
+        filterText: newProps.regionName
+      });
+    };
+  },
+
+  componentDidMount: function() {
+    if (this.props.idDex) {
+      this.fetchPokemon(this.props.idDex);
     };
 
     if (this.props.regionName) {
@@ -91,6 +81,28 @@ var PokedexContainer = React.createClass({
     this.setState({
       isLoading: isLoadingBOOL
     });
+  },
+
+  fetchPokemon: function(idDex) {
+    Request
+      .get(`http://pokeapi.co/api/v1/pokemon/${idDex}/`)
+      .set('Accept', 'application/json')
+      .end(function(err, res){
+        if (err || !res.ok) {
+          alert('Oh no! error');
+        } else {
+          var pkmn = res.body;
+          var pkmnDatas = PokemonManager.compute(pkmn);
+          // pkmnDatas = assign(pkmnDatas, handlerDatas);
+
+          this.setState({
+            pokemon: pkmnDatas,
+            haveToShowModal: true
+          });
+
+          $(ReactDOM.findDOMNode(this.refs.modal)).modal();
+       }
+      }.bind(this));
   },
 
   render: function() {

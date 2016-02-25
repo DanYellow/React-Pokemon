@@ -24,13 +24,12 @@ var ModalHeader = React.createClass({
   },
 
   render: function() {
-    var imgClassName = 'pkmn-img-zoomed '
-    imgClassName += this.state.isShowingBigger ? 'show' : null;
+    var imgClassName = this.state.isShowingBigger ? 'show' : null;
     return (
       <div className="modal-header">
         <button type="button" className="close" data-dismiss="modal">&times;</button>
         <button className="reset-btn pkmn-img-zoomed-btn" onClick={this.biggerPokemon}>
-          <img width="100%" src={this.props.datas.sprite} className={classNames(imgClassName)}/>
+          <img width="100%" src={this.props.datas.sprite} className={classNames('pkmn-img-zoomed', imgClassName)}/>
         </button>
 
         <h4 className="modal-title">
@@ -225,12 +224,22 @@ var Modal = React.createClass({displayName: 'Modal',
     $(ReactDOM.findDOMNode(this)).on('shown.bs.modal, show.bs.modal', this.modalLoaded);
   },
 
+  componentWillReceiveProps: function(newProps) {
+    
+
+    if ($(ReactDOM.findDOMNode(this)).is(':visible')) {
+      console.log($(ReactDOM.findDOMNode(this)).is(':visible'));
+    };
+    // if ( $(ReactDOM.findDOMNode(this)).data('bs.modal').isShown) {
+    //   // 
+    // };
+  },
+
   modalLoaded: function() {
     this.props.loadingDelegate(false);
   },
 
   render: function() {
-
     return (
       <div className={classNames('modal fade pkmn-modal')} tabIndex="-1" role="dialog" id="pkmnModal">
         <div className="modal-dialog">
