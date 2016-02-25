@@ -108,10 +108,11 @@ var PokemonManager = (function() {
       datas.moves      = moves(datas.moves);
       
       var idDex        = datas.national_id;
-      datas.sprite     = `http://pokeapi.co/media/img/${idDex}.png`
+      datas.sprite     = `http://pokeapi.co/media/img/${idDex}.png`;
+      datas.idDex      = idDex;
       
       datas.evolutions = evolutions(datas.evolutions);
-      // datas.region     = region(idDex);
+      // datas.region  = region(idDex);
       datas.abilities  = abilities(datas.abilities);
 
 

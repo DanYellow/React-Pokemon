@@ -16,11 +16,19 @@ var endRendering = _.debounce(endRenderingLastItem, 50);
 var PokemonSprite = React.createClass({
 
   getInitialState: function() {
-    return null;
+    return {
+      src: 'assets/images/sprite-loader.gif',
+      height: 70
+    };
   },
 
   handleImageLoaded: function() {
     // this.props.pokemonDelegate();
+    
+    // this.setState({
+    //   src: this.props.src,
+    //   height: 90
+    // })
   },
  
   handleImageErrored: function(e) {
@@ -30,7 +38,7 @@ var PokemonSprite = React.createClass({
   render: function() {
     return (
       <img 
-        src={this.props.src} height="90"
+        src={this.props.src} height={this.state.height}
         onLoad={this.handleImageLoaded}
         onError={this.handleImageErrored}
       />

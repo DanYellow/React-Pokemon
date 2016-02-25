@@ -230,6 +230,7 @@ var Modal = React.createClass({displayName: 'Modal',
   },
 
   render: function() {
+
     return (
       <div className={classNames('modal fade pkmn-modal')} tabIndex="-1" role="dialog" id="pkmnModal">
         <div className="modal-dialog">

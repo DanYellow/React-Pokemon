@@ -59,8 +59,11 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
     console.log('Pokédex set');
   },
 
-  pokemonDelegate: function(value) {
-    this.props.appDelegate(value);
+  /*
+    Pass id dex to the main controler (PokedexContainer)
+   */
+  pokemonDelegate: function(idDex) {
+    this.props.appDelegate(idDex);
   },
 
   loadingDelegate: function(isLoading) {
