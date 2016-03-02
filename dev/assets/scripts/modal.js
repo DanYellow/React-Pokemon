@@ -67,7 +67,7 @@ var PokemonEvolution = React.createClass({
     return(
       <li className="pkmn-evolutions__item">
         <img height="60" src={this.props.datas.sprite}/>
-        <a className="pkmn-name">
+        <a className="pkmn-name" href={ '#/pkmn/' + this.props.datas.idDex }>
             {this.props.datas.to + ' '}
             {this.props.datas.level ? '(level: ' + this.props.datas.level + ')' : '(method: ' + this.props.datas.method + ')'}</a>
       </li>
@@ -84,7 +84,7 @@ var Types = React.createClass({
 
     var types = this.props.datas.map(function(type, index){
       return <li className={classNames(type.name)} key={index}>{type.name}</li>
-    });
+    }); 
 
     return(
       <ul className="list-unstyled pkmn-types">
@@ -226,13 +226,6 @@ var Modal = React.createClass({displayName: 'Modal',
 
   componentWillReceiveProps: function(newProps) {
     
-
-    if ($(ReactDOM.findDOMNode(this)).is(':visible')) {
-      console.log($(ReactDOM.findDOMNode(this)).is(':visible'));
-    };
-    // if ( $(ReactDOM.findDOMNode(this)).data('bs.modal').isShown) {
-    //   // 
-    // };
   },
 
   modalLoaded: function() {
