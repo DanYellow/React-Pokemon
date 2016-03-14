@@ -24,13 +24,12 @@ var ModalHeader = React.createClass({
   },
 
   render: function() {
-    var imgClassName = 'pkmn-img-zoomed '
-    imgClassName += this.state.isShowingBigger ? 'show' : null;
+    var imgClassName = this.state.isShowingBigger ? 'show' : null;
     return (
       <div className="modal-header">
         <button type="button" className="close" data-dismiss="modal">&times;</button>
         <button className="reset-btn pkmn-img-zoomed-btn" onClick={this.biggerPokemon}>
-          <img width="100%" src={this.props.datas.sprite} className={classNames(imgClassName)}/>
+          <img width="100%" src={this.props.datas.sprite} className={classNames('pkmn-img-zoomed', imgClassName)}/>
         </button>
 
         <h4 className="modal-title">
@@ -68,7 +67,7 @@ var PokemonEvolution = React.createClass({
     return(
       <li className="pkmn-evolutions__item">
         <img height="60" src={this.props.datas.sprite}/>
-        <a className="pkmn-name">
+        <a className="pkmn-name" href={ '#/pkmn/' + this.props.datas.idDex }>
             {this.props.datas.to + ' '}
             {this.props.datas.level ? '(level: ' + this.props.datas.level + ')' : '(method: ' + this.props.datas.method + ')'}</a>
       </li>
@@ -85,7 +84,7 @@ var Types = React.createClass({
 
     var types = this.props.datas.map(function(type, index){
       return <li className={classNames(type.name)} key={index}>{type.name}</li>
-    });
+    }); 
 
     return(
       <ul className="list-unstyled pkmn-types">
@@ -223,6 +222,10 @@ var Modal = React.createClass({displayName: 'Modal',
 
   componentDidMount: function() {
     $(ReactDOM.findDOMNode(this)).on('shown.bs.modal, show.bs.modal', this.modalLoaded);
+  },
+
+  componentWillReceiveProps: function(newProps) {
+    
   },
 
   modalLoaded: function() {

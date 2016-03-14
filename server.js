@@ -14,6 +14,8 @@ var server = http.createServer(function(req, res) {
 
 var colors = require('colors');
 
-server.listen(9000, function(){
-	console.log("Server run at localhost:9000".inverse);
+var serverPort = 9001;
+
+server.listen(serverPort, function(){
+	console.log("Server run at localhost:"+serverPort); //.inverse
 });

@@ -4,9 +4,10 @@ var $              = jQuery = require('jquery');
 var assign         = require('object-assign');
 var _                   = require('underscore');
 
-var PokemonManager = require('./pokemon-manager');
+
 var PokemonSprite = require('./pokemon-sprite');
-var Request        = require('superagent');
+
+
 
 
 var endRenderingLastItem = function(_this) {
@@ -34,30 +35,13 @@ var Pokemon = React.createClass({
     endRendering(this);
   },
 
-  endRenderingList: function() {
-    console.log('gregerge');
-  },
-
   handleClick: function(e) {
     var handlerDatas = this.props.datas;
     var id           = this.props.datas.idDex;
 
     this.props.loadingDelegate(true);
 
-    Request
-      .get(`http://pokeapi.co/api/v1/pokemon/${id}/`)
-      .set('Accept', 'application/json')
-      .end(function(err, res){
-        if (err || !res.ok) {
-          alert('Oh no! error');
-        } else {
-          var pkmn = res.body;
-          var pkmnDatas = PokemonManager.compute(pkmn);
-          pkmnDatas = assign(pkmnDatas, handlerDatas);
-
-          this.props.pokedexDelegate(pkmnDatas);
-       }
-      }.bind(this));
+    // this.props.pokedexDelegate(id);
   },
 
   pokemonDelegate: function() {
@@ -68,7 +52,7 @@ var Pokemon = React.createClass({
     var srcSprite = `http://pokeapi.co/media/img/${this.props.datas.idDex}.png`;
     return (
       <li className={classNames('pokedex-entry', {'last-pkmn': this.props.datas.isLastRegionPkmn}, this.props.datas.region)} onClick={this.handleClick}>
-        <a className="pokedex-entry__pkmn">
+        <a className="pokedex-entry__pkmn" href={"#/pkmn/" + this.props.datas.idDex}>
           <PokemonSprite src={srcSprite} pokemonDelegate={this.pokemonDelegate} />
           <p>
             <span className="pkmn-idDex">#{ this.props.datas.idDex } { this.props.datas.isLast }</span>
