@@ -36,6 +36,8 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
-    "react-router": "^2.0.0"
+    "react-redux": "^4.4.0",
+    "react-router": "^2.0.0",
+    "redux": "^3.3.1"
   }
 }

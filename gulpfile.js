@@ -31,7 +31,7 @@ var streamify  = require('gulp-streamify');
 
 
 gulp.task('browserify', function() {
-    return browserify('./dev/assets/scripts/app.js').transform("reactify")
+    return browserify('./dev/assets/scripts/app.js').transform("babelify")
         .bundle()
         .pipe(source('app.js'))
         //.pipe(streamify(uglify()))
