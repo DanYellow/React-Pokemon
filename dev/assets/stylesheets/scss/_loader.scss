@@ -11,11 +11,18 @@
     left: 50%;
     top: 50%;
     margin-left: -70px;
-    margin-top: -50px;
+    margin-top: -68px;
     position: absolute;
 
     text-align: center;
     color: white;
     font-size: 25px;
+  }
+
+  #animation img {
+    display: none;
+  }
+  #animation img:first-child {
+    display: block;
   }
 }

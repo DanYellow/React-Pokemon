@@ -20,7 +20,7 @@ var PokemonSprite = require('./pokemon-sprite');
 var endRenderingLastItem = function(_this) {
   // The last pokemon is rendered
   // _this.props.loadingDelegate(false);
-  Actions.lastPkmnRendered();
+  // Actions.lastPkmnRendered();
 }
 
 var endRendering = _.debounce(endRenderingLastItem, 1000);

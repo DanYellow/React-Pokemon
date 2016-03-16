@@ -70,8 +70,9 @@ var PokemonEvolution = React.createClass({
       <li className="pkmn-evolutions__item">
         <img height="60" src={this.props.datas.sprite}/>
         <a className="pkmn-name" href={ '#/pkmn/' + this.props.datas.idDex }>
-            {this.props.datas.to + ' '}
-            {this.props.datas.level ? '(level: ' + this.props.datas.level + ')' : '(method: ' + this.props.datas.method + ')'}</a>
+          {this.props.datas.to + ' '}
+          {this.props.datas.level ? '(level: ' + this.props.datas.level + ')' : '(method: ' + this.props.datas.method + ')'}
+        </a>
       </li>
     )
   }
@@ -230,8 +231,7 @@ var Modal = React.createClass({displayName: 'Modal',
   },
 
   modalLoaded: function() {
-    console.log('modalLoaded');
-    // Actions.modalLoaded();
+    Actions.modalLoaded();
   },
 
   render: function() {

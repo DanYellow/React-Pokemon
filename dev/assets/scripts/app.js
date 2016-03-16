@@ -10,6 +10,7 @@ var Router         = require('react-router').Router;
 var IndexRoute     = require('react-router').IndexRoute;
 var Link           = require('react-router').Link;
 var hashHistory    = require('react-router').hashHistory;
+var browserHistory    = require('react-router').browserHistory;
 
 var PokemonManager = require('./pokemon-manager');
 var Loader         = require('./loader');
@@ -24,6 +25,8 @@ var Store          = require('./stores');
 window.maxIdDex = 718;
 
 var App = React.createClass({
+  currentIdDex: null,
+
   getInitialState: function() {
     var kantoRange  = { 'name': 'kanto', 'range': [1, 151], 'generation': 'First generation' };
     var johtoRange  = { 'name': 'johto', 'range': [152, 251], 'generation': 'Second generation' };
@@ -42,7 +45,7 @@ var App = React.createClass({
   render: function() {
     var regionsList = []
     this.state.regions.forEach(function(region, index) {
-      regionsList.push(<li key={index}><Link to={"/region/" + region.name}>{region.name}</Link></li>);
+      regionsList.push(<li key={index}><Link to={'region/' + region.name} activeStyle={{ color: "red"}}>{region.name}</Link></li>);
     });
 
     return (
@@ -84,7 +87,9 @@ var PokedexContainer = React.createClass({
     Store.addChangeListener(this._onChange);
 
     if (this.props.idDex) {
-      Actions.pkmnSelected(this.props.idDex);
+      this.currentIdDex = this.props.idDex;
+      Actions.pkmnSelected(this.currentIdDex);
+      this.currentIdDex = null;
     };
 
     if (this.props.regionName) {
