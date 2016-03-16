@@ -105,8 +105,6 @@ AppDispatcher.register( function( payload ) {
       break;
 
     case ActionEvent.MODAL_LOADED:
-      console.log('MODAL_LOADED');
-
       // ModalManager.loaded();
       break;
 

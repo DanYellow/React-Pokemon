@@ -13,11 +13,10 @@ var Loader = React.createClass({
     setInterval(function () { 
       frames[i % frameCount].style.display   = 'none';
       frames[++i % frameCount].style.display = 'block';
-    }, 100);
+    }, 60);
   },
 
   render: function() { 
-          // <img src="assets/images/pika-loader-mini.gif" />
     return (
       <div className="loader"> 
         <figure className="indicator">
