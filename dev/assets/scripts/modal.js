@@ -3,11 +3,13 @@ var $          = require('jquery');
 var _          = require('underscore');
 var classNames = require('classnames');
 var ReactDOM   = require('react-dom');
-var classNames     = require('classnames');
-var bootstrap = require('bootstrap');
+var classNames = require('classnames');
+var bootstrap  = require('bootstrap');
 
 var Helpers    = require('./utils');
 var Pokemon    = require('./pokemon');
+
+var Actions    = require('./actions');
 
 /** @jsx React.DOM */
 var ModalHeader = React.createClass({
@@ -216,7 +218,6 @@ var Modal = React.createClass({displayName: 'Modal',
   getInitialState: function() {
     
     return {
-      isShowing: false
     };
   },
 
@@ -225,11 +226,12 @@ var Modal = React.createClass({displayName: 'Modal',
   },
 
   componentWillReceiveProps: function(newProps) {
-    
+    // console.log('newProps', newProps);
   },
 
   modalLoaded: function() {
-    this.props.loadingDelegate(false);
+    console.log('modalLoaded');
+    // Actions.modalLoaded();
   },
 
   render: function() {

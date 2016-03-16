@@ -2,6 +2,7 @@ var React               = require('react');
 var ReactDOM            = require('react-dom');
 var $                   = jQuery = require('jquery');
 var _                   = require('underscore');
+var Request             = require('superagent');
 
 
 var Helpers             = require('./utils');
@@ -9,7 +10,8 @@ var Pokemon             = require('./pokemon');
 var Loader              = require('./loader');
 var PokedexRegionHeader = require('./pokedex-region-header');
 
-
+var Actions = require('./actions');
+var Store = require('./stores');
 
 /** @jsx React.DOM */
 var Pokedex = React.createClass({displayName: 'Pokedex',
@@ -35,39 +37,26 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
     };
   },
 
-  loadCommentsFromServer: function() {
-    $.ajax({
-      url: 'http://pokeapi.co/api/v1/pokedex/1/',
-      dataType: 'json',
-      cache: false,
-      success: function(data) {
-        this.setState({ data: this.sanitizeWSDatas(data.pokemon) });
-      }.bind(this),
-      error: function(xhr, status, err) {
-      }.bind(this)
-    });
+  loadPokedexDatas: function() {
+    Actions.showPokedex();
   },
 
   componentDidMount: function() {
-    this.loadCommentsFromServer();
+    this.loadPokedexDatas();
 
-
+    Store.addChangeListener(this._onChange);
   },
 
   componentWillMount: function () {
-    
-    console.log('Pokédex set');
+    // console.log('Pokédex set');
   },
 
-  /*
-    Pass id dex to the main controler (PokedexContainer)
-   */
-  pokemonDelegate: function(idDex) {
-    this.props.appDelegate(idDex);
+  componentWillUnmount: function() {
+    Store.removeChangeListener(this._onChange);
   },
 
-  loadingDelegate: function(isLoading) {
-    this.props.loadingDelegate(isLoading);
+  _onChange: function() {
+    this.setState({ data: this.sanitizeWSDatas(Store.pokedex) });
   },
 
   /**
@@ -75,8 +64,7 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
    * @return {[type]} [description]
    */
   renderPokemon: function(obj, _this) {
-    return <Pokemon key={obj.index} datas={obj.pokemon} pokedexDelegate={_this.pokemonDelegate} loadingDelegate={_this.loadingDelegate} /> 
-
+    return <Pokemon key={obj.index} datas={obj.pokemon} pokedexDelegate={_this.pokemonDelegate} /> 
   },
 
   render: function() {
@@ -156,6 +144,11 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
 
   sanitizeWSDatas: function (datas, region) {
     var _this = this;
+
+    if (_.isEmpty(datas)) {
+      return [];
+    };
+
     var pkmnArray = datas.map(function(pkmn, index) {
       var idDex   = Helpers.idDex(pkmn);
       pkmn.idDex  = idDex;
@@ -174,7 +167,6 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
 
       return pkmn;
     });
-
 
     // We remove extra transformations (Mega-Evolutions, Forms-A/B/C/Whatever)
     pkmnArray = pkmnArray.filter(function(pkmn) {

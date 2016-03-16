@@ -4,6 +4,13 @@ var $              = jQuery = require('jquery');
 var assign         = require('object-assign');
 var _                   = require('underscore');
 
+var Store = require('./stores');
+
+
+
+var AppDispatcher = require('./dispatcher');
+var Actions = require('./actions');
+
 
 var PokemonSprite = require('./pokemon-sprite');
 
@@ -12,7 +19,8 @@ var PokemonSprite = require('./pokemon-sprite');
 
 var endRenderingLastItem = function(_this) {
   // The last pokemon is rendered
-  _this.props.loadingDelegate(false);
+  // _this.props.loadingDelegate(false);
+  Actions.lastPkmnRendered();
 }
 
 var endRendering = _.debounce(endRenderingLastItem, 1000);
@@ -39,9 +47,7 @@ var Pokemon = React.createClass({
     var handlerDatas = this.props.datas;
     var id           = this.props.datas.idDex;
 
-    this.props.loadingDelegate(true);
-
-    // this.props.pokedexDelegate(id);
+    Actions.pkmnSelected(id);
   },
 
   pokemonDelegate: function() {
@@ -63,5 +69,6 @@ var Pokemon = React.createClass({
     );
   } 
 });
+
 
 module.exports = Pokemon;

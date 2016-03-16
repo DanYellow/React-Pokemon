@@ -3,6 +3,7 @@ var ReactDOM       = require('react-dom');
 var $              = jQuery = require('jquery');
 var Request        = require('superagent');
 var assign         = require('object-assign');
+var _              = require('underscore');
 
 var Route          = require('react-router').Route;
 var Router         = require('react-router').Router;
@@ -16,16 +17,38 @@ var Pokedex        = require('./pokedex');
 var SearchBar      = require('./search-bar');
 var Modal          = require('./modal');
 
+
+var Actions        = require('./actions');
+var Store          = require('./stores');
+
 window.maxIdDex = 718;
 
 var App = React.createClass({
+  getInitialState: function() {
+    var kantoRange  = { 'name': 'kanto', 'range': [1, 151], 'generation': 'First generation' };
+    var johtoRange  = { 'name': 'johto', 'range': [152, 251], 'generation': 'Second generation' };
+    var hoennRange  = { 'name': 'hoenn', 'range': [252, 386], 'generation': 'Third generation' };
+    var sinnohRange = { 'name': 'sinnoh', 'range': [387, 493], 'generation': 'Fourth generation' };
+    var unysRange   = { 'name': 'unys', 'range': [494, 649], 'generation': 'fifth generation' };
+    var kalosRange  = { 'name': 'kalos', 'range': [650, window.maxIdDex], 'generation': 'Sixth generation' };
+
+    var regions = [kantoRange, johtoRange, hoennRange, sinnohRange, unysRange, kalosRange];
+
+    return {
+      regions: regions
+    };
+  },
+
   render: function() {
-    //         // {this.props.children}
+    var regionsList = []
+    this.state.regions.forEach(function(region, index) {
+      regionsList.push(<li key={index}><Link to={"/region/" + region.name}>{region.name}</Link></li>);
+    });
+
     return (
       <div>
         <ul>
-          <li><Link to="/region/kanto">Kanto</Link></li>
-          <li><Link to="/region/kalos">Kalos</Link></li>
+          {regionsList}
         </ul>
         <PokedexContainer idDex={this.props.params.idDex} regionName={this.props.params.regionName}/>
       </div>
@@ -50,10 +73,6 @@ var PokedexContainer = React.createClass({
   },
 
   componentWillReceiveProps: function(newProps) {
-    if (newProps.idDex) {
-      this.fetchPokemon(newProps.idDex);
-    };
-
     if (newProps.regionName) {
       this.setState({
         filterText: newProps.regionName
@@ -62,8 +81,10 @@ var PokedexContainer = React.createClass({
   },
 
   componentDidMount: function() {
+    Store.addChangeListener(this._onChange);
+
     if (this.props.idDex) {
-      this.fetchPokemon(this.props.idDex);
+      Actions.pkmnSelected(this.props.idDex);
     };
 
     if (this.props.regionName) {
@@ -73,45 +94,29 @@ var PokedexContainer = React.createClass({
     }; 
   },
 
-  pkmnClicked: function(id) {
-    
+  componentWillUnmount: function() {
+    Store.removeChangeListener(this._onChange);
   },
 
-  isLoading: function(isLoadingBOOL) {
+  _onChange: function() {
+    // Avoid "ghostering" of the page
+    if (!_.isEmpty(Store.pkmn) && !Store.isLoading) {
+      $(ReactDOM.findDOMNode(this.refs.modal)).modal();
+    };
+
     this.setState({
-      isLoading: isLoadingBOOL
+      pokemon: Store.pkmn,
+      isLoading: Store.isLoading
     });
-  },
-
-  fetchPokemon: function(idDex) {
-    Request
-      .get(`http://pokeapi.co/api/v1/pokemon/${idDex}/`)
-      .set('Accept', 'application/json')
-      .end(function(err, res){
-        if (err || !res.ok) {
-          alert('Oh no! error');
-        } else {
-          var pkmn = res.body;
-          var pkmnDatas = PokemonManager.compute(pkmn);
-          // pkmnDatas = assign(pkmnDatas, handlerDatas);
-
-          this.setState({
-            pokemon: pkmnDatas,
-            haveToShowModal: true
-          });
-
-          $(ReactDOM.findDOMNode(this.refs.modal)).modal();
-       }
-      }.bind(this));
   },
 
   render: function() {
     return (
       <div>
         <SearchBar filterText={this.state.filterText} onUserInput={this.handleUserInput} />
-        <Pokedex filterText={this.state.filterText} appDelegate={this.pkmnClicked} loadingDelegate={this.isLoading}/>
+        <Pokedex filterText={this.state.filterText} />
+        <Modal ref='modal' pokemon={this.state.pokemon} />
 
-        <Modal ref="modal" pokemon={this.state.pokemon} loadingDelegate={this.isLoading} isShowing={this.state.haveToShowModal} />
         {this.state.isLoading ? <Loader /> : null}
       </div>
     );
