@@ -15,5 +15,5 @@ Inspired by : https://facebook.github.io/react/docs/thinking-in-react.html
 
 FLUX
 
-https://github.com/bengrunfeld/react-flux-simple-app
-Flux is an pattern of programming not for REact only it can be used on Backbone too
+https://github.com/bengrunfeld/react-flux-simple-app <br>
+Flux is an pattern of programming not for React only it can be used on Backbone too

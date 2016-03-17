@@ -6,6 +6,8 @@ var _                   = require('underscore');
 
 var Store = require('./stores');
 
+var Link           = require('react-router').Link;
+
 
 
 var AppDispatcher = require('./dispatcher');
@@ -55,16 +57,18 @@ var Pokemon = React.createClass({
   },
 
   render: function() {
-    var srcSprite = `http://pokeapi.co/media/img/${this.props.datas.idDex}.png`;
+    var srcSprite = `http://pokeapi.co/media/sprites/pokemon/${this.props.datas.idDex}.png`;
+    // var srcSprite = `http://pokeapi.co/media/img/${this.props.datas.idDex}.png`;
+        // <a className="pokedex-entry__pkmn" href={"#/pkmn/" + this.props.datas.idDex}>
     return (
-      <li className={classNames('pokedex-entry', {'last-pkmn': this.props.datas.isLastRegionPkmn}, this.props.datas.region)} onClick={this.handleClick}>
-        <a className="pokedex-entry__pkmn" href={"#/pkmn/" + this.props.datas.idDex}>
+      <li className={classNames('pokedex-entry', {'last-pkmn': this.props.datas.isLastRegionPkmn}, this.props.datas.region)}>
+        <Link to={'pkmn/' + this.props.datas.idDex} className="pokedex-entry__pkmn">
           <PokemonSprite src={srcSprite} pokemonDelegate={this.pokemonDelegate} />
           <p>
             <span className="pkmn-idDex">#{ this.props.datas.idDex } { this.props.datas.isLast }</span>
             <span className="pkmn-name">{ this.props.datas.name }</span> 
           </p> 
-        </a>
+        </Link>
       </li>
     );
   } 

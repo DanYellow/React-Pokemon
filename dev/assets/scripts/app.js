@@ -76,12 +76,27 @@ var PokedexContainer = React.createClass({
   },
 
   componentWillReceiveProps: function(newProps) {
+    if (newProps.idDex) {
+      this.currentIdDex = this.props.idDex;
+      Actions.pkmnSelected(this.currentIdDex);
+    };
+
     if (newProps.regionName) {
       this.setState({
         filterText: newProps.regionName
       });
     };
   },
+
+  // shouldComponentUpdate: function(nextProps, nextState) {
+  //   // It avoid infinite loading on first loading
+  //   console.log(_.isEmpty(nextProps), nextProps); // nextState.pokemon
+  //   if (!_.isEmpty(nextProps)) {
+  //     return true;
+  //   };
+  //   console.log('continued');
+  //   return nextProps.idDex !== this.props.idDex;
+  // },
 
   componentDidMount: function() {
     Store.addChangeListener(this._onChange);
@@ -135,7 +150,7 @@ ReactDOM.render((
       <Route path="pkmn/:idDex" component={App} />
       <Route path="region/:regionName" component={App} />
 
-      { /* Manage default route*/}
+      { /* Manage default route*/ }
       <Route path="*" component={App}/>
     </Route>
   </Router>

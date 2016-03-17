@@ -6,6 +6,8 @@ var ReactDOM   = require('react-dom');
 var classNames = require('classnames');
 var bootstrap  = require('bootstrap');
 
+var Link           = require('react-router').Link;
+
 var Helpers    = require('./utils');
 var Pokemon    = require('./pokemon');
 
@@ -69,10 +71,10 @@ var PokemonEvolution = React.createClass({
     return(
       <li className="pkmn-evolutions__item">
         <img height="60" src={this.props.datas.sprite}/>
-        <a className="pkmn-name" href={ '#/pkmn/' + this.props.datas.idDex }>
+        <Link to={ 'pkmn/' + this.props.datas.idDex } className="pkmn-name">
           {this.props.datas.to + ' '}
           {this.props.datas.level ? '(level: ' + this.props.datas.level + ')' : '(method: ' + this.props.datas.method + ')'}
-        </a>
+        </Link>
       </li>
     )
   }
@@ -216,19 +218,32 @@ var Evolutions = React.createClass({
 
 // http://stackoverflow.com/questions/28241912/bootstrap-modal-in-react-js
 var Modal = React.createClass({displayName: 'Modal',
-  getInitialState: function() {
+  // getInitialState: function() {
     
-    return {
-    };
-  },
+  //   return {
+  //   };
+  // },
 
   componentDidMount: function() {
+    console.log('componentDidMount');
     $(ReactDOM.findDOMNode(this)).on('shown.bs.modal, show.bs.modal', this.modalLoaded);
   },
 
   componentWillReceiveProps: function(newProps) {
-    // console.log('newProps', newProps);
+    console.log('newProps', newProps);
   },
+
+  // shouldComponentUpdate: function(nextProps, nextState) {
+  //   // It avoid infinite loading on first loading
+  //   console.log(_.isEmpty(nextProps), nextProps, this.props); // nextState.pokemon
+
+  //   return true;
+  //   if (!_.isEmpty(nextProps)) {
+  //     return true;
+  //   };
+  //   console.log('continued');
+  //   return nextProps.idDex !== this.props.idDex;
+  // },
 
   modalLoaded: function() {
     Actions.modalLoaded();
