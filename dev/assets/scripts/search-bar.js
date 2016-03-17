@@ -17,13 +17,24 @@ var SearchBar = React.createClass({
     e.preventDefault();
   },
 
+  _onChange: function(event) {
+    console.log('fergreger');
+
+    this.setState({
+      filterText: event.target.value
+    });
+
+    // Actions.inputTextChange(e.currentTarget.value);
+  },
+
   render: function() { 
     return (
       <form onSubmit={this.submit}>
         <input type="text" placeholder="Search..." 
                className="pkmn-searchbar" value={ this.props.filterText }
                defaultValue="Pikachuchu"
-               onChange={this.handleChange}/>
+               onChange={this.handleChange}
+        />
       </form>
     );
   } 

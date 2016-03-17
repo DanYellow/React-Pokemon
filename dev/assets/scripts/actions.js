@@ -28,6 +28,13 @@ var Actions = {
       actionType: ActionEvent.MODAL_LOADED,
       datas: {}
     });
+  },
+
+  inputTextChange: function (inputVal) {
+    AppDispatcher.handleAction({
+      actionType: ActionEvent.INPUT_VALUE_CHANGED,
+      datas: inputVal
+    });
   }
 };
 

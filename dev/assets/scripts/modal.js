@@ -225,12 +225,12 @@ var Modal = React.createClass({displayName: 'Modal',
   // },
 
   componentDidMount: function() {
-    console.log('componentDidMount');
+    // console.log('componentDidMount');
     $(ReactDOM.findDOMNode(this)).on('shown.bs.modal, show.bs.modal', this.modalLoaded);
   },
 
   componentWillReceiveProps: function(newProps) {
-    console.log('newProps', newProps);
+    // console.log('newProps', newProps);
   },
 
   // shouldComponentUpdate: function(nextProps, nextState) {

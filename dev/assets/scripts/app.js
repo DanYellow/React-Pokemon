@@ -25,8 +25,6 @@ var Store          = require('./stores');
 window.maxIdDex = 718;
 
 var App = React.createClass({
-  currentIdDex: null,
-
   getInitialState: function() {
     var kantoRange  = { 'name': 'kanto', 'range': [1, 151], 'generation': 'First generation' };
     var johtoRange  = { 'name': 'johto', 'range': [152, 251], 'generation': 'Second generation' };
@@ -104,7 +102,6 @@ var PokedexContainer = React.createClass({
     if (this.props.idDex) {
       this.currentIdDex = this.props.idDex;
       Actions.pkmnSelected(this.currentIdDex);
-      this.currentIdDex = null;
     };
 
     if (this.props.regionName) {

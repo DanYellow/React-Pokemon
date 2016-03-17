@@ -6,7 +6,6 @@ var _     = require('underscore');
 
 var endRenderingLastItem = function(_this) {
   // The last pokemon is rendered
-  _this.props.loadingDelegate(false);
 }
 
 var endRendering = _.debounce(endRenderingLastItem, 50);
