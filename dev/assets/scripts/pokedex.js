@@ -33,7 +33,8 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
       data: [],
       filterText: '',
       isLoading: true,
-      regions: regions
+      regions: regions,
+      count: 0
     };
   },
 
@@ -63,8 +64,8 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
    * An utiliy method to render aPokmon
    * @return {[type]} [description]
    */
-  renderPokemon: function(obj, _this) {
-    return <Pokemon key={obj.index} datas={obj.pokemon} pokedexDelegate={_this.pokemonDelegate} /> 
+  renderPokemon: function(obj, _this, size) {
+    return <Pokemon key={obj.index} datas={obj.pokemon} size={size} /> 
   },
 
   render: function() {
@@ -107,8 +108,17 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
         return false;
       });
    
-      var lastRegion  = null;
-      var regionDatas = null;
+      var lastRegion   = null;
+      var regionDatas  = null;
+      var size         = {};
+
+      this.state.count = pokemonFiltered.length;
+      if (this.state.count > 300) {
+        size = {'width': '120px','height': '120px'}
+      } else {
+        size = {'width': '160px','height': '160px'}
+      }
+
       pokemonFiltered.forEach(function(pokemon, index) {        
         obj.index   = index;
         obj.pokemon = pokemon;
@@ -123,17 +133,16 @@ var Pokedex = React.createClass({displayName: 'Pokedex',
         // http://facebook.github.io/react/tips/communicate-between-components.html
         // http://stackoverflow.com/questions/24103072/reactjs-onclick-handler-not-firing-when-placed-on-a-child-component
         // This works only for divs 
-        pokemonNodes.push(this.renderPokemon(obj, _this));
+        pokemonNodes.push(this.renderPokemon(obj, _this, size));
       }.bind(this));
 
       return (
         <div>
-          <p className="nb-results">{ pokemonFiltered.length} results</p>
+          <p className="nb-results">{ pokemonFiltered.length } results</p>
           <ul className="list-unstyled pokedex">
             {pokemonNodes}
           </ul>
         </div>
-
       );
     } else {
       return (

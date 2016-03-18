@@ -36,9 +36,10 @@ var ModalManager = {
 
 var APIManager = {
   fetchPkmn: function(idDex) {
-    Store.isLoading = true;
-    Store.emitChange();
-
+    // Store.isLoading = true;
+    // Store.showModal = false;
+    // Store.emitChange();
+ 
     Request
       .get(`https://pokeapi.co/api/v1/pokemon/${idDex}/`)
       .set('Accept', 'application/json')

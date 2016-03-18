@@ -10,7 +10,7 @@ var Router         = require('react-router').Router;
 var IndexRoute     = require('react-router').IndexRoute;
 var Link           = require('react-router').Link;
 var hashHistory    = require('react-router').hashHistory;
-var browserHistory    = require('react-router').browserHistory;
+var browserHistory = require('react-router').browserHistory;
 
 var PokemonManager = require('./pokemon-manager');
 var Loader         = require('./loader');
@@ -22,7 +22,7 @@ var Modal          = require('./modal');
 var Actions        = require('./actions');
 var Store          = require('./stores');
 
-window.maxIdDex = 718;
+window.maxIdDex    = 718;
 
 var App = React.createClass({
   getInitialState: function() {
@@ -32,8 +32,8 @@ var App = React.createClass({
     var sinnohRange = { 'name': 'sinnoh', 'range': [387, 493], 'generation': 'Fourth generation' };
     var unysRange   = { 'name': 'unys', 'range': [494, 649], 'generation': 'fifth generation' };
     var kalosRange  = { 'name': 'kalos', 'range': [650, window.maxIdDex], 'generation': 'Sixth generation' };
-
-    var regions = [kantoRange, johtoRange, hoennRange, sinnohRange, unysRange, kalosRange];
+    
+    var regions     = [kantoRange, johtoRange, hoennRange, sinnohRange, unysRange, kalosRange];
 
     return {
       regions: regions
@@ -41,7 +41,7 @@ var App = React.createClass({
   },
 
   render: function() {
-    var regionsList = []
+    var regionsList = [];
     this.state.regions.forEach(function(region, index) {
       regionsList.push(<li key={index}><Link to={'region/' + region.name} activeStyle={{ color: "red"}}>{region.name}</Link></li>);
     });
@@ -65,12 +65,6 @@ var PokedexContainer = React.createClass({
       isLoading: true,
       haveToShowModal: false
     };
-  },
-
-  handleUserInput: function(filterText) {
-    // this.setState({
-    //   filterText: Store.filterText
-    // });
   },
 
   componentWillReceiveProps: function(newProps) {
@@ -148,8 +142,9 @@ ReactDOM.render((
       <Route path="pkmn/:idDex" component={App} />
       <Route path="region/:regionName" component={App} />
 
-      { /* Manage default route*/ }
+      { /* Manage default route  */ }
       <Route path="*" component={App}/>
+
     </Route>
   </Router>
-), document.getElementById('pokedex-container'))
+), document.getElementById('pokedex-container'));

@@ -238,7 +238,6 @@
           vertical-align: bottom;
         }  
       }
-      
     }
 
     p {
@@ -259,11 +258,14 @@
       }
     }
 
-    .pokedex-entry__pkmn {
+    .pokedex-entry__pkmn-container {
+      display: table;
       width: 100%;
       height: 100%;
-      display: block;
-      padding: 5px 0 0;
+      .pokedex-entry__pkmn {
+        display: table-cell;
+        vertical-align: middle;
+      }  
     }
   }
 }

@@ -1,8 +1,8 @@
-var React    = require('react');
-// var $         = jQuery = require('jquery');
+var React   = require('react');
+// var $    = jQuery = require('jquery');
 // 
-var Actions        = require('./actions');
-var Store          = require('./stores');
+var Actions = require('./actions');
+var Store   = require('./stores');
 
 /** @jsx React.DOM */
 var SearchBar = React.createClass({

@@ -3,7 +3,7 @@ var React    = require('react');
 /** @jsx React.DOM */
 var Loader = React.createClass({
   componentDidMount: function() {
-    this._startAnimation();
+    // this._startAnimation();
   },
 
   _startAnimation: function () { 
@@ -20,12 +20,14 @@ var Loader = React.createClass({
     return (
       <div className="loader"> 
         <figure className="indicator">
-          <div id="animation">
+          { 
+            /*<div id="animation">
               <img src='assets/images/pika-loader-0.png' />
               <img src='assets/images/pika-loader-1.png' />
               <img src='assets/images/pika-loader-2.png' />
               <img src='assets/images/pika-loader-3.png' />
-          </div>
+            </div> */ 
+          }
           <figcaption>Loading</figcaption>
         </figure>
       </div>

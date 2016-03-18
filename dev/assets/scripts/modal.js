@@ -6,7 +6,7 @@ var ReactDOM   = require('react-dom');
 var classNames = require('classnames');
 var bootstrap  = require('bootstrap');
 
-var Link           = require('react-router').Link;
+var Link       = require('react-router').Link;
 
 var Helpers    = require('./utils');
 var Pokemon    = require('./pokemon');
