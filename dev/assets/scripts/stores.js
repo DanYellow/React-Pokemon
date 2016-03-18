@@ -15,6 +15,8 @@ var Store = assign({}, EventEmitter.prototype, {
     pkmn: {},
     pokedex: [],
     isLoading: false,
+    showModal: false,
+    filterText: '',
 
     addChangeListener: function(callback) {
       this.on('change', callback);
@@ -52,6 +54,7 @@ var APIManager = {
           Store.pkmn = pkmnDatas;
 
           Store.isLoading = false;
+          Store.showModal = true;
           Store.emitChange();
        }
       }.bind(this));
@@ -75,6 +78,7 @@ var APIManager = {
           Store.pokedex = pokedexDatas;
 
           Store.isLoading = false;
+          Store.showModal = false;
           Store.emitChange();
        }
       }.bind(this));
@@ -106,6 +110,12 @@ AppDispatcher.register( function( payload ) {
 
     case ActionEvent.MODAL_LOADED:
       // ModalManager.loaded();
+      break;
+
+    case ActionEvent.INPUT_VALUE_CHANGED:
+      Store.filterText = datas;
+      Store.showModal = false;
+      Store.emitChange();
       break;
 
     default:

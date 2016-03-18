@@ -68,9 +68,9 @@ var PokedexContainer = React.createClass({
   },
 
   handleUserInput: function(filterText) {
-    this.setState({
-      filterText: filterText
-    });
+    // this.setState({
+    //   filterText: Store.filterText
+    // });
   },
 
   componentWillReceiveProps: function(newProps) {
@@ -117,13 +117,14 @@ var PokedexContainer = React.createClass({
 
   _onChange: function() {
     // Avoid "ghostering" of the page
-    if (!_.isEmpty(Store.pkmn) && !Store.isLoading) {
+    if (!_.isEmpty(Store.pkmn) && !Store.isLoading && Store.showModal) {
       $(ReactDOM.findDOMNode(this.refs.modal)).modal();
     };
 
     this.setState({
       pokemon: Store.pkmn,
-      isLoading: Store.isLoading
+      isLoading: Store.isLoading,
+      filterText: Store.filterText
     });
   },
 
