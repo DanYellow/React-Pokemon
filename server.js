@@ -1,21 +1,23 @@
+var webpack = require('webpack')
+var webpackDevMiddleware = require('webpack-dev-middleware')
+var webpackHotMiddleware = require('webpack-hot-middleware')
+var config = require('./webpack.config')
 
-var http = require('http');
+var app = new (require('express'))()
+var port = 9001
 
-var finalhandler = require('finalhandler');
-var serveStatic = require('serve-static');
+var compiler = webpack(config)
+app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
+app.use(webpackHotMiddleware(compiler))
 
-var serve = serveStatic("./public");
+app.get("/", function(req, res) {
+  res.sendFile(__dirname + '/public/index.html')
+})
 
-var server = http.createServer(function(req, res) {
-  var done = finalhandler(req, res);
-  serve(req, res, done);
-});
-
-
-var colors = require('colors');
-
-var serverPort = 9001;
-
-server.listen(serverPort, function(){
-	console.log("Server run at localhost:"+serverPort); //.inverse
-});
+app.listen(port, function(error) {
+  if (error) {
+    console.error(error)
+  } else {
+    console.info("==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.", port, port)
+  }
+})
