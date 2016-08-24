@@ -17,6 +17,8 @@ console.log(Provider)
 
 
 render(
-  <div></div>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 )

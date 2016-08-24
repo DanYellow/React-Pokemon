@@ -31,4 +31,6 @@ var AddTodo = React.createClass({
 });
 
 
-module.exports = AddTodo
+AddTodo = connect()(AddTodo)
+
+export default AddTodo
