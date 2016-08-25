@@ -6,6 +6,7 @@ import { addTodo } from '../actions'
 
 var AddTodo = React.createClass({
   inputSubmited: function (e) {
+    alert('frefefer')
     e.preventDefault()
     if (!input.value.trim()) {
       return
@@ -17,7 +18,7 @@ var AddTodo = React.createClass({
   render: function() {
     return (
       <div>
-      <form onSubmit={this.inputSubmited(e)}>
+      <form onSubmit={this.inputSubmited}>
         <input ref={node => {
           input = node
         }} />

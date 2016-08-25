@@ -5,10 +5,8 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-    <AddTodo />
-    <VisibleTodoList />
-    <Footer />
-  </div>
+        <AddTodo />
+      </div>
     );
   }
 });

@@ -8,9 +8,9 @@ module.exports = {
     './dev/assets/scripts/app.js'
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'public'),
     filename: 'app.js',
-    publicPath: '/public/'
+    publicPath: '/assets/scripts/'
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),

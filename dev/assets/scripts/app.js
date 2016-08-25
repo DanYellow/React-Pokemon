@@ -6,15 +6,9 @@ import { createStore } from 'redux'
 import todoApp from './reducers'
 import App from './components/App'
 
-var store    = Redux.createStore(todoApp)
+var store    = createStore(todoApp)
 
 console.log(Provider)
-
-// ReactDOM.render(
-//   <Provider store={store}></Provider>,
-//   document.getElementById('root')
-// );
-
 
 render(
   <Provider store={store}>
