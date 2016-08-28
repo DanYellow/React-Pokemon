@@ -2,34 +2,35 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addTodo } from '../actions'
 
-// AddTodo = connect()(AddTodo)
+class AddTodo extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-var AddTodo = React.createClass({
-  inputSubmited: function (e) {
-    alert('frefefer')
+  formSubmited (e) {
     e.preventDefault()
-    if (!input.value.trim()) {
+    
+    if (!this.refs.myInput.value.trim()) {
       return
     }
-    dispatch(addTodo(input.value))
-    input.value = ''
-  },
 
-  render: function() {
+    this.props.dispatch(addTodo(this.refs.myInput.value))
+    this.refs.myInput.value = ''
+  }
+
+  render() {
     return (
       <div>
-      <form onSubmit={this.inputSubmited}>
-        <input ref={node => {
-          input = node
-        }} />
-        <button type="submit">
-          Add Todo
-        </button>
-      </form>
-    </div>
+        <form onSubmit={this.formSubmited.bind(this)}>
+          <input ref="myInput" />
+          <button type="submit">
+            Add Todo
+          </button>
+        </form>
+      </div>
     );
   }
-});
+}
 
 
 AddTodo = connect()(AddTodo)

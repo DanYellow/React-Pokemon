@@ -8,7 +8,6 @@ import App from './components/App'
 
 var store    = createStore(todoApp)
 
-console.log(Provider)
 
 render(
   <Provider store={store}>

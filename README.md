@@ -16,22 +16,16 @@ Inspired by : https://facebook.github.io/react/docs/thinking-in-react.html
 
 Redux :
 
-Action : Say something happened
-Reducer : Say what's to do when something happen
-Container
+Action : Says something happened
+Reducer : Says what's to do when something happen
+Container : Binds datas for component (container is a controller in MVC)
+Component : Binds datas for component (component is a view in MVC)
 
 
-Module build failed: SyntaxError: Unexpected token (20:2)
-
-  18 | 
-  19 | render(
-> 20 |   <div></div>,
-     |   ^
-  21 |   document.getElementById('root')
-  22 | )
-
-
-  http://fr.slideshare.net/nikgraf/react-redux-introduction
+# Links
+- http://fr.slideshare.net/nikgraf/react-redux-introduction
+- https://facebook.github.io/react/docs/more-about-refs.html
+- https://www.reddit.com/r/reactjs/comments/4npzq5/confused_redux_or_mobx/d46k2bl
 
 
 https://github.com/davezuko/react-redux-starter-kit/blob/master/src/components/Counter/Counter.js
