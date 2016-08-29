@@ -1,14 +1,24 @@
 import React from 'react'
-import AddTodo from '../containers/AddTodo'
 
-var App = React.createClass({
-  render: function() {
+class ListTodo extends React.Component {
+  constructor (props) {
+    super(props);
+  }
+
+  render() {
     return (
-      <div>
-        <AddTodo />
-      </div>
+        <ul>
+          {this.props.todos.map(todo =>
+            <li key={todo.id}>{todo.text}</li>
+          )}
+        </ul>
     );
   }
-});
+}
 
-export default App
+
+ListTodo.propTypes = {
+  todos: React.PropTypes.array.isRequired
+}
+
+export default ListTodo
