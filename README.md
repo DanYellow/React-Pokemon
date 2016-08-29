@@ -22,10 +22,14 @@ Container : Binds datas for component (container is a controller in MVC)
 Component : Binds datas for component (component is a view in MVC)
 
 
+connect(mapStateToProps, mapDispatchToProps) : give state to the function au lieu
+
+
 # Links
 - http://fr.slideshare.net/nikgraf/react-redux-introduction
 - https://facebook.github.io/react/docs/more-about-refs.html
 - https://www.reddit.com/r/reactjs/comments/4npzq5/confused_redux_or_mobx/d46k2bl
+- http://blog.krawaller.se/posts/a-react-redux-example-app/
 
 
 https://github.com/davezuko/react-redux-starter-kit/blob/master/src/components/Counter/Counter.js
