@@ -37,8 +37,14 @@ https://github.com/davezuko/react-redux-starter-kit/blob/master/src/routes/Count
 https://github.com/davezuko/react-redux-starter-kit/blob/master/src/routes/Counter/modules/counter.js 
 
 
+http://redux.js.org/docs/advanced/ExampleRedditAPI.html
+
 en fait, si je prends une analogie avec MVC, le component, c'est la vue/template
 le container, c'est le controller qui transmet des datas et des methodes a la vue
 et le module, c'est juste un service comme un autre (AÂ part que laÂ , il est en redux)
 les components sont rÃ©utilisables, si tu regardes ligne 23 du component, tu peux voir qu'il definit les proprietes dont il a besoin
 et le container va faire creer un bridge pour ces props, tu peux les retrouver dans le container, lignes 16, 17 et 21 
+
+
+
+Actions must be plain objects. Use custom middleware for async actions.

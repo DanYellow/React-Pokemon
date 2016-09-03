@@ -4,6 +4,7 @@ import { addTodo } from '../actions'
 class AddTodo extends React.Component {
   constructor(props) {
     super(props);
+    
   }
 
   formSubmited (e) {

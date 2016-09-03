@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux'
 
-var visibilityFilter = function(state, action) {
-  if (!state) { state = "SHOW_ALL"; }
-  
+var pkmns = function (state = [], action) {
   switch (action.type) {
-    case 'SET_VISIBILITY_FILTER':
-      return action.filter
+    case 'FETCH_PKMN':
+      return [
+        ...state,
+        { id: action.id, datas: action.datas }
+      ]
     default:
       return state
   }
 }
-
 
 var todos = function (state = [], action) {
   switch (action.type) {
@@ -25,8 +25,11 @@ var todos = function (state = [], action) {
 }
 
 
+
+
+
 var todoApp = combineReducers({
-    visibilityFilter,
+    pkmns,
     todos
 })
 
