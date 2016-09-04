@@ -1,10 +1,8 @@
-let nextTodoId = 0
-export const addTodo = function (text) {
-    return {
-      type: 'ADD_TODO',
-      id: nextTodoId++,
-      text
-    }
+export const searchPkmn = function (text) {
+  return {
+    type: 'FILTER_PKMN',
+    text
+  }
 }
 
 
@@ -20,7 +18,7 @@ export const receivePkmn = function (id, json) {
 
 export const fetchPkmn = function (idDex) {
   return dispatch => {
-    return fetch(`http://pokeapi.co/api/v2/pokemon/${idDex}/`)
+    return fetch(`http://pokeapi.co/api/v2/pokemon/${idDex}/`, { 'cache': 'force-cache' })
       .then(response => response.json())
       .then(json => dispatch(receivePkmn(idDex, json)))
   }

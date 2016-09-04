@@ -3,6 +3,9 @@ var webpack = require('webpack')
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
+  node: {
+    fs: "empty"
+  },
   entry: [
     'webpack-hot-middleware/client',
     './dev/assets/scripts/app.js'
@@ -18,12 +21,11 @@ module.exports = {
   ],
   module: {
     loaders: [
-      {
-        test: /\.js$/,
-        loaders: [ 'babel' ],
-        exclude: /node_modules/,
-        include: __dirname
-      }
+      { test: /\.js$/, loader: 'babel', exclude: /node_modules/, include: __dirname },
+      { test: /\.css$/, loader: 'style-loader!css-loader!postcss-loader' }
     ]
+  },
+  postcss: function () {
+    return [require('autoprefixer'), require('precss')];
   }
 }

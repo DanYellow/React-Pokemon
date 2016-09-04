@@ -30,6 +30,7 @@ connect(mapStateToProps, mapDispatchToProps) : give state to the function au lie
 - https://facebook.github.io/react/docs/more-about-refs.html
 - https://www.reddit.com/r/reactjs/comments/4npzq5/confused_redux_or_mobx/d46k2bl
 - http://blog.krawaller.se/posts/a-react-redux-example-app/
+- https://speakerdeck.com/vjeux/react-css-in-js
 
 
 https://github.com/davezuko/react-redux-starter-kit/blob/master/src/components/Counter/Counter.js
@@ -47,4 +48,5 @@ et le container va faire creer un bridge pour ces props, tu peux les retrouver d
 
 
 
-Actions must be plain objects. Use custom middleware for async actions.
+
+

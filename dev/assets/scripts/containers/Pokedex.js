@@ -5,9 +5,21 @@ import { connect } from 'react-redux'
 import { fetchPkmn } from '../actions'
 import Pokedex from '../components/Pokedex'
 
+
+
+
+const filterPkmns = (pkmns, filter) => {
+  if (filter.trim() == "") {
+    return pkmns;
+  } else {
+    return pkmns.filter(filterPkmnByName)
+  }
+}
+
 function mapStateToProps(state) {
+  console.log('state', state);
   return {
-    pkmns: state.pkmns
+    pkmns: state.pkmns //filterPkmns(state.pkmns, state.search)
   }
 }
 

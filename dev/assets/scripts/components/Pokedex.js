@@ -1,17 +1,18 @@
 import React from 'react'
 
+var styles = require('../../stylesheets/main.css');
+
+console.log(styles)
+
 import { fetchPkmn } from '../actions'
 
 class Pokedex extends React.Component {
   constructor (props) {
     super(props);
-
-
-    
   }
 
   componentWillMount() {
-    for (var i = 1; i < 43; i++) {
+    for (var i = 1; i < 4; i++) {
       this.props.dispatch(fetchPkmn(i));
     }
   }
@@ -28,8 +29,8 @@ class Pokedex extends React.Component {
 }
 
 
-// ListTodo.propTypes = {
-//   todos: React.PropTypes.array.isRequired
-// }
+Pokedex.propTypes = {
+  pkmns: React.PropTypes.array.isRequired
+}
 
 export default Pokedex
