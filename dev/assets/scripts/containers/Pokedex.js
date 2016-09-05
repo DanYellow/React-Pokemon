@@ -6,27 +6,28 @@ import { fetchPkmn } from '../actions'
 import Pokedex from '../components/Pokedex'
 
 
+// const filterPkmnByName = function(pkmn) {
+//   return pkmn.datas.name.indexOf('b') > -1
+// }
 
 
-const filterPkmns = (pkmns, filter) => {
+const filterPkmns = (pkmns, filter = '') => {
   if (filter.trim() == "") {
     return pkmns;
   } else {
-    return pkmns.filter(filterPkmnByName)
+    return pkmns.filter(pkmn => pkmn.datas.name.indexOf(filter) > -1)
   }
 }
 
 function mapStateToProps(state) {
-  console.log('state', state);
   return {
-    pkmns: state.pkmns //filterPkmns(state.pkmns, state.search)
+    pkmns: filterPkmns(state.pkmns, state.search.text)
   }
 }
 
+// Crée alias de dispatch
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(fetchPkmn, dispatch)
-  }
+  return fetchPkmn
 }
 
 var PokedexContainer = connect(mapStateToProps)(Pokedex)

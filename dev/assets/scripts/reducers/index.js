@@ -1,9 +1,6 @@
 import { combineReducers } from 'redux'
 
 
-const filterPkmnByName = function(pkmn) {
-  return pkmn.datas.name.indexOf('b') > -1
-}
 
 
 var pkmns = function (state = [], action) {
@@ -26,7 +23,7 @@ var pkmns = function (state = [], action) {
 var search = function (state = '', action) {
   switch (action.type) {
     case 'FILTER_PKMN':
-      return state;
+      return action;
     default:
       return state;
   }
