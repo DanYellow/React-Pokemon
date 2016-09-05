@@ -2,7 +2,7 @@ import React from 'react'
 
 var styles = require('../../stylesheets/main.css');
 
-console.log(styles)
+// console.log(styles)
 
 import { fetchPkmn } from '../actions'
 
@@ -12,16 +12,21 @@ class Pokedex extends React.Component {
   }
 
   componentWillMount() {
-    for (var i = 1; i < 4; i++) {
+    for (var i = 1; i < 10; i++) {
       this.props.dispatch(fetchPkmn(i));
     }
   }
 
   render() {
     return (
-        <ul>
+        <ul className="pokedex">
           {this.props.pkmns.map(pkmn =>
-            <li key={pkmn.id}>{pkmn.datas.name}</li>
+            <li className="pokedex-item" key={pkmn.id}>
+              <figure>
+                <img src={pkmn.datas.sprites.front_default} />
+              </figure>
+              <p>{pkmn.datas.name}</p>
+            </li>
           )}
         </ul>
     );
