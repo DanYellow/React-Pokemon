@@ -1,6 +1,7 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { _ } from 'underscore'
 
 import { fetchPkmn } from '../actions'
 import Pokedex from '../components/Pokedex'
@@ -21,7 +22,7 @@ const filterPkmns = (pkmns, filter = '') => {
 
 function mapStateToProps(state) {
   return {
-    pkmns: filterPkmns(state.pkmns, state.search.text)
+    pkmns: _.sortBy(filterPkmns(state.pkmns, state.search.text), function(o) { return o.id; })
   }
 }
 
