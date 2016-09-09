@@ -1,10 +1,12 @@
 import React from 'react'
 
+import { fetchPkmn } from '../actions'
+import PokedexItem from './PokedexItem'
+
 var styles = require('../../stylesheets/main.css');
 
 // console.log(styles)
 
-import { fetchPkmn } from '../actions'
 
 class Pokedex extends React.Component {
   constructor (props) {
@@ -21,12 +23,7 @@ class Pokedex extends React.Component {
     return (
         <ul className="pokedex">
           {this.props.pkmns.map(pkmn =>
-            <li className="pokedex-item" key={pkmn.id}>
-              <figure>
-                <img src={pkmn.datas.sprites.front_default} />
-              </figure>
-              <p>{pkmn.datas.name}</p>
-            </li>
+            <PokedexItem key={pkmn.id} datas={pkmn.datas} />
           )}
         </ul>
     );

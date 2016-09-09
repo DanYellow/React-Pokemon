@@ -33,6 +33,18 @@
     p {
       color: black;
     }
+
+    &.fire {
+      background: linear-gradient(to bottom, #ff1a00 0%, #ff5d00 100%);
+    }
+
+    &.water {
+      background: linear-gradient(to bottom, #1e5799 0%, #7db9e8 100%);
+    }
+
+    &.grass {
+      background: linear-gradient(to bottom, #52b152 0%, #005700 98%);
+    }
   }
 
   &:before {
@@ -55,7 +67,7 @@
     margin: 0 auto;
     display: block;
     transition: transform .3s;
-    /* will-change: transform; */
+    will-change: transform;
   }
 
   p {
@@ -66,4 +78,6 @@
     left: 0;
     right: 0;
   }
+
+  
 }

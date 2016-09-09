@@ -1,23 +1,28 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { _ } from 'underscore'
+
+import _ from 'lodash'
 
 import { fetchPkmn } from '../actions'
 import Pokedex from '../components/Pokedex'
 
 
-// const filterPkmnByName = function(pkmn) {
-//   return pkmn.datas.name.indexOf('b') > -1
-// }
-
 
 const filterPkmns = (pkmns, filter = '') => {
+  // console.log(pkmns)
+  // hzllo = _.map(pkmns.datas.types, getArrayTypes);
+
   if (filter.trim() == "") {
     return pkmns;
   } else {
     return pkmns.filter(pkmn => pkmn.datas.name.indexOf(filter) > -1)
   }
+}
+
+const getArrayTypes = (types) => {
+  console.log(types)
+    return _.map(types, 'type.name');
 }
 
 function mapStateToProps(state) {

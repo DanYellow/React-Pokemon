@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux'
 
 
-
-
 var pkmns = function (state = [], action) {
   switch (action.type) {
     case 'FETCH_PKMN':
