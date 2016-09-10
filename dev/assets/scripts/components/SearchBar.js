@@ -1,7 +1,7 @@
 import React from 'react'
 import { searchPkmn } from '../actions'
 
-class SearchBar extends React.Component {
+export default class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     
@@ -10,22 +10,18 @@ class SearchBar extends React.Component {
   formSubmited (e) {
     e.preventDefault();
     
-    // if (!this.refs.myInput.value.trim()) {
-    //   return;
-    // }
-    console.log(this)
     this.props.dispatch(searchPkmn(this.refs.myInput.value));
   }
 
   render() {
     return (
-      <div>
-        <form>
-          <input ref="myInput" onKeyUp={this.formSubmited.bind(this)} />
-        </form>
-      </div>
+      <form>
+        <input 
+        ref="myInput" 
+        type="search" 
+        placeholder="Enter a name" 
+        onKeyUp={this.formSubmited.bind(this)} />
+      </form>
     );
   }
 }
-
-export default SearchBar

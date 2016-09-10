@@ -2,11 +2,9 @@ import React from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
 
-
-
 import { detailsPkmn } from '../actions'
 
-class PokedexItem extends React.Component {
+export default class PokedexItem extends React.Component {
   constructor (props) {
     super(props);
   }
@@ -20,14 +18,14 @@ class PokedexItem extends React.Component {
     var datas = this.props.datas;
     
     return (
-        <li className={classNames('pokedex-item', datas.typesString)} >
-          <a href="#" onClick={this.pkmnSelected.bind(this, datas)}>
-            <figure>
-              <img src={datas.sprites.front_default} />
-            </figure>
-            <p>{datas.name} | #{datas.id}</p>
-          </a>
-        </li>
+      <li className={classNames('pokedex-item', datas.typesString)} >
+        <a href="#" onClick={this.pkmnSelected.bind(this, datas)}>
+          <figure>
+            <img src={datas.sprites.front_default} />
+          </figure>
+          <p>{datas.name} | #{datas.id}</p>
+        </a>
+      </li>
     );
   }
 }
@@ -36,5 +34,3 @@ class PokedexItem extends React.Component {
 PokedexItem.propTypes = {
   datas: React.PropTypes.object.isRequired
 }
-
-export default PokedexItem

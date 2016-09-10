@@ -1,7 +1,7 @@
 import React from 'react'
 import { addTodo } from '../actions'
 
-class AddTodo extends React.Component {
+export default class AddTodo extends React.Component {
   constructor(props) {
     super(props);
     
@@ -31,5 +31,3 @@ class AddTodo extends React.Component {
     );
   }
 }
-
-export default AddTodo

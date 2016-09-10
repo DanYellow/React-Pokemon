@@ -11,7 +11,7 @@ module.exports = {
     './dev/assets/scripts/app.js'
   ],
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, './'),
     filename: 'app.js',
     publicPath: '/assets/scripts/'
   },
@@ -26,6 +26,6 @@ module.exports = {
     ]
   },
   postcss: function () {
-    return [require('autoprefixer'), require('precss')];
+    return [require('precss')];
   }
 }

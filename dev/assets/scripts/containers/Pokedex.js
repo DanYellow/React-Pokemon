@@ -20,7 +20,8 @@ const filterPkmns = (pkmns, filter = '') => {
 }
 
 const getArrayTypes = (pkmn) => {
-  pkmn.datas.typesString = _.map(pkmn.datas.types, 'type.name');
+  pkmn.datas.typesString = _.reverse(_.map(pkmn.datas.types, 'type.name'));
+
   if (pkmn.datas.typesString.length == 2) {
     pkmn.datas.typesString[1] = pkmn.datas.typesString[1] + '-border'
   }
