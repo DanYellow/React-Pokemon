@@ -15,11 +15,20 @@ export const receivePkmn = function (id, json) {
   }
 }
 
+export const detailsPkmn = function (datas) {
+  return {
+    type: 'DETAILS_PKMN',
+    datas: datas
+  }
+}
+
 
 export const fetchPkmn = function (idDex) {
   return dispatch => {
     return fetch(`http://pokeapi.co/api/v2/pokemon/${idDex}/`, { 'cache': 'force-cache' })
       .then(response => response.json())
-      .then(json => dispatch(receivePkmn(idDex, json)))
+      .then(function(json) {
+        return dispatch(receivePkmn(idDex, json))
+      })
   }
 }

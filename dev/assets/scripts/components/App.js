@@ -4,6 +4,7 @@ import React from 'react'
 // import ListTodo from '../containers/ListTodo'
 import Pokedex from '../containers/Pokedex'
 import SearchBar from '../containers/SearchBar'
+import PokemonDetails from '../containers/PokemonDetails'
 
 var styles = require('../../stylesheets/main.css');
 
@@ -17,7 +18,10 @@ class App extends React.Component {
     return (
       <div>
         <SearchBar />
-        <Pokedex />
+        <div id="container">
+          <Pokedex />
+          <PokemonDetails />
+        </div>
       </div>
     );
   }

@@ -13,7 +13,7 @@ class SearchBar extends React.Component {
     // if (!this.refs.myInput.value.trim()) {
     //   return;
     // }
-
+    console.log(this)
     this.props.dispatch(searchPkmn(this.refs.myInput.value));
   }
 

@@ -10,9 +10,8 @@ import Pokedex from '../components/Pokedex'
 
 
 const filterPkmns = (pkmns, filter = '') => {
-  // console.log(pkmns)
-  // hzllo = _.map(pkmns.datas.types, getArrayTypes);
-
+  pkmns = _.map(pkmns, getArrayTypes);
+  
   if (filter.trim() == "") {
     return pkmns;
   } else {
@@ -20,9 +19,12 @@ const filterPkmns = (pkmns, filter = '') => {
   }
 }
 
-const getArrayTypes = (types) => {
-  console.log(types)
-    return _.map(types, 'type.name');
+const getArrayTypes = (pkmn) => {
+  pkmn.datas.typesString = _.map(pkmn.datas.types, 'type.name');
+  if (pkmn.datas.typesString.length == 2) {
+    pkmn.datas.typesString[1] = pkmn.datas.typesString[1] + '-border'
+  }
+  return pkmn;
 }
 
 function mapStateToProps(state) {

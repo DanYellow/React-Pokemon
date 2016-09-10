@@ -2,26 +2,56 @@
   background-color: red;
 }*/
 
+#container {
+  display: flex;
+}
+
+#pkmn-details {
+  padding: 15px;
+
+  &.show {
+    flex-grow: 2;
+    flex-shrink: 0;
+  }
+  section {
+    position: fixed;
+
+    h3 {
+      text-transform: capitalize;
+    }
+  }
+}
+
 .pkmn {
   font-size: 15px;
 }
 
 .pokedex {
   display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 200px;
   flex-direction: row;
-  justify-content: flex-start;
   flex-wrap: wrap;
+  justify-content: flex-start;
   width: auto;
-
   list-style: none;
 }
 
+
+
 .pokedex-item {
+  position: relative;
+  margin:5px;
   /*flex-basis: 20%;*/
   width: 150px;
   height: 150px;
-  position: relative;
-  margin:5px;
+  border: 1px solid transparent;
+
+  a {
+    display: block;
+  }
+  
 
   &:hover {
     &:before {
@@ -29,54 +59,92 @@
     }
     img {
       transform: scale(1.5);
+      filter: initial;
     }
     p {
       color: black;
     }
-
     &.fire {
       background: linear-gradient(to bottom, #ff1a00 0%, #ff5d00 100%);
-    }
 
+      &-border {
+        border-color: #ff5d00;
+      }
+    }
     &.water {
       background: linear-gradient(to bottom, #1e5799 0%, #7db9e8 100%);
-    }
 
+      &-border {
+        border-color: #7db9e8;
+      }
+    }
     &.grass {
       background: linear-gradient(to bottom, #52b152 0%, #005700 98%);
+
+      &-border {
+        border-color: #005700;
+      }
+    }
+    &.poison {
+      background: linear-gradient(to bottom, #ad1283 0%, #840e65 100%);
+
+      &-border {
+        border-color: #840e65;
+      }
+    }
+    &.fly {
+      background: linear-gradient(to bottom, #ebe9f9 0%, #c1bfea 100%);
+
+      &-border {
+        border-color: #c1bfea;
+      }
+    }
+    &.electric {
+      background: linear-gradient(to bottom, #fceabb 0%, #f8b500 100%);
+
+      &-border {
+        border-color: #f8b500;
+      }
+    }
+    &.flying {
+      background: linear-gradient(to bottom, #d5ebfb 0%, #89c3eb 100%);
+
+      &-border {
+        border-color: #89c3eb;
+      }
     }
   }
-
   &:before {
-    content: "";
+    position: absolute;
     top: 0;
     right: 0;
-    left: 0;
     bottom: 0;
+    left: 0;
+    z-index: 99;
+    pointer-events: none;
     background-color: rgba(0, 0, 0, .75);
-    position: absolute;
+    content: "";
   }
-
   figure {
     display: flex;
     align-content: flex-start;
     margin: 0;
   }
-
   img {
-    margin: 0 auto;
     display: block;
+    margin: 0 auto;
     transition: transform .3s;
     will-change: transform;
+    filter: grayscale(100%);
   }
-
   p {
-    text-align: center;
     position: absolute;
+    right: 0;
+    left: 0;
     z-index: 9999;
     color: white;
-    left: 0;
-    right: 0;
+    text-align: center;
+    text-transform: capitalize;
   }
 
   

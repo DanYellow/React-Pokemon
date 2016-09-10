@@ -4,31 +4,37 @@ import classNames from 'classnames'
 
 
 
-import { fetchPkmn } from '../actions'
+import { detailsPkmn } from '../actions'
 
 class PokedexItem extends React.Component {
   constructor (props) {
     super(props);
   }
- // types
+
+  pkmnSelected (pkmn, e) {
+    e.preventDefault();
+    this.props.dispatch(detailsPkmn(pkmn));
+  }
 
   render() {
     var datas = this.props.datas;
     
     return (
-        <li className={classNames('pokedex-item' )} >
-          <figure>
-            <img src={datas.sprites.front_default} />
-          </figure>
-          <p>{datas.name} | #{datas.id}</p>
+        <li className={classNames('pokedex-item', datas.typesString)} >
+          <a href="#" onClick={this.pkmnSelected.bind(this, datas)}>
+            <figure>
+              <img src={datas.sprites.front_default} />
+            </figure>
+            <p>{datas.name} | #{datas.id}</p>
+          </a>
         </li>
     );
   }
 }
 
 
-// PokedexItem.propTypes = {
-//   pkmns: React.PropTypes.object.isRequired
-// }
+PokedexItem.propTypes = {
+  datas: React.PropTypes.object.isRequired
+}
 
 export default PokedexItem

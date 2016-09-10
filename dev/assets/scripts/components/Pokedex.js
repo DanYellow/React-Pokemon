@@ -1,12 +1,7 @@
 import React from 'react'
 
 import { fetchPkmn } from '../actions'
-import PokedexItem from './PokedexItem'
-
-var styles = require('../../stylesheets/main.css');
-
-// console.log(styles)
-
+import PokedexItem from '../containers/PokedexItem'
 
 class Pokedex extends React.Component {
   constructor (props) {

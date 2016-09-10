@@ -5,13 +5,14 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 
-import todoApp from './reducers'
+import reducer from './reducers'
 import App from './components/App'
 
 var store    = createStore(
-  todoApp,
-  applyMiddleware(
-    thunkMiddleware // lets us dispatch() functions
+  reducer,
+  compose(
+    applyMiddleware(thunkMiddleware),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 )
 
