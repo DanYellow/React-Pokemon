@@ -6,7 +6,6 @@ import PokemonDetails from '../containers/PokemonDetails'
 
 var styles = require('../../stylesheets/main.css');
 
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -14,12 +13,10 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div>
         <div id="container">
           <Pokedex />
           <PokemonDetails />
         </div>
-      </div>
     );
   }
 }

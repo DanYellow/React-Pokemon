@@ -6,6 +6,8 @@ import classNames from 'classnames'
 export default class PkmnSprite extends React.Component {
   constructor(props, context) { 
     super(props, context);
+
+    this.isFemaleSprite = this._isFemaleSprite(props.image);
   }
 
   componentWillReceiveProps(nextProps) {
