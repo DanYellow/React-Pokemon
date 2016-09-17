@@ -8,7 +8,7 @@ module.exports = {
   },
   entry: [
     'webpack-hot-middleware/client',
-    './dev/assets/scripts/app.js'
+    './dev/assets/scripts/app.js',
   ],
   output: {
     path: path.join(__dirname, './'),
@@ -22,7 +22,8 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.js$/, loader: 'babel', exclude: /node_modules/, include: __dirname },
-      { test: /\.css$/, loader: 'style-loader!css-loader!postcss-loader' }
+      { test: /\.css$/, loader: 'style-loader!css-loader!postcss-loader' },
+      { test: /\.(png|jpg|jpeg)$/, loader: 'url-loader?limit=8192', include: __dirname  }
     ]
   },
   postcss: function () {

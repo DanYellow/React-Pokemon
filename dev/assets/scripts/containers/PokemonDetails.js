@@ -5,9 +5,30 @@ import { addTodo } from '../actions'
 
 import PokemonDetails from '../components/PokemonDetails'
 
+/**
+ * Adds version X, Y, Moon and Sun of Pokemon
+ * @type {[type]}
+ */
+const addLastestVersion = (pkmn) => {
+  if (!Object.keys(pkmn).length) {
+    return pkmn;
+  }
+
+  var pkmnVersions = pkmn.datas.game_indices;
+
+  // pkmnVersions.unshift({"version":{"url":"http://pokeapi.co/api/v2/version/22/","name":"x"},"game_index":5})
+  // pkmnVersions.unshift({"version":{"url":"http://pokeapi.co/api/v2/version/22/","name":"y"},"game_index":5})
+  // pkmnVersions.unshift({"version":{"url":"http://pokeapi.co/api/v2/version/22/","name":"moon"},"game_index":5})
+  // pkmnVersions.unshift({"version":{"url":"http://pokeapi.co/api/v2/version/22/","name":"sun"},"game_index":5})
+
+  // pkmn.game_indices = pkmnVersions;
+
+  return pkmn;
+}
+
 function mapStateToProps(state) {
   return {
-    pkmn: state.pkmn
+    pkmn: addLastestVersion(state.pkmn)
   }
 }
 
