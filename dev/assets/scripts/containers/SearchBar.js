@@ -4,6 +4,17 @@ import { connect } from 'react-redux'
 import SearchBar from '../components/SearchBar'
 
 
-var SearchBarContainer = connect()(SearchBar)
+import { searchPkmn } from '../actions'
+
+function mapDispatchToProps(dispatch) {
+  return {
+    searchPkmn: () => dispatch(searchPkmn()),
+  }
+
+}
+
+// console.log(mapDispatchToProps())
+
+var SearchBarContainer = connect(mapDispatchToProps)(SearchBar)
 
 export default SearchBarContainer

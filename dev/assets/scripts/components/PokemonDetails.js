@@ -47,7 +47,7 @@ export default class PokemonDetails extends React.Component {
               <h3>#{this.datas.id} | {this.datas.name}</h3>
               <ul className="list-unstyled pkmn-types">
                 {this.datas.typesString.map((type, index) =>
-                  <li className={classNames(type.replace('-border',''))} key={index}>{type.replace('-border','')}</li>
+                  <li className={classNames(type.replace('-border',''))} key={Date.now() + index}>{type.replace('-border','')}</li>
                 )}
               </ul>
               <PkmnMeasurement {...{weight: pkmnDatas.weight, height: pkmnDatas.height }} />
@@ -57,7 +57,7 @@ export default class PokemonDetails extends React.Component {
           <h3>Appears in </h3>
           <div style={Styles.gameCoversContainer}>
             {this.datas.game_indices.map((data, index) =>
-              <GameVersion name={data.version.name} key={index}/>
+              <GameVersion name={data.version.name} key={Date.now() + index}/>
             )}
           </div>
 

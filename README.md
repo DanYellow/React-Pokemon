@@ -18,7 +18,7 @@ Container : Binds datas for component (container is a controller in MVC)
 Component : Binds datas for component (component is a view in MVC)
 
 
-connect(mapStateToProps, mapDispatchToProps) : give state to the function au lieu
+Avoid index as id : https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318#.7eaupp5ke
 
 
 

@@ -8,7 +8,7 @@ import thunkMiddleware from 'redux-thunk'
 import reducer from './reducers'
 import App from './components/App'
 
-var store    = createStore(
+let store    = createStore(
   reducer,
   compose(
     applyMiddleware(thunkMiddleware),

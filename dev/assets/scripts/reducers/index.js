@@ -19,6 +19,7 @@ var pkmns = function (state = [], action) {
 }
 
 var search = function (state = '', action) {
+  // console.log("search", action, state)
   switch (action.type) {
     case 'FILTER_PKMN':
       return action;
@@ -41,9 +42,7 @@ var reducers = combineReducers({
   pkmns,
   search,
   pkmn
-})
-
-
+});
 
 
 export default reducers

@@ -7,20 +7,22 @@ export default class SearchBar extends React.Component {
     
   }
 
-  formSubmited (e) {
+  keyUp (e) {
     e.preventDefault();
     
     this.props.dispatch(searchPkmn(this.refs.myInput.value));
+
+    // this.props.searchPkmn(this.refs.myInput.value);
   }
 
   render() {
     return (
       <form>
         <input 
-        ref="myInput" 
-        type="search" 
+        ref="myInput"
+        type="search"
         placeholder="Enter a name" 
-        onKeyUp={this.formSubmited.bind(this)} />
+        onKeyUp={this.keyUp.bind(this)} />
       </form>
     );
   }

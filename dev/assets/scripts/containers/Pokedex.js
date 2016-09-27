@@ -9,6 +9,7 @@ import Pokedex from '../components/Pokedex'
 
 
 
+
 const filterPkmns = (pkmns, filter = '') => {
   pkmns = _.map(pkmns, getArrayTypes);
   
@@ -35,10 +36,12 @@ function mapStateToProps(state) {
 }
 
 // Crée alias de dispatch
-function mapDispatchToProps(dispatch) {
-  return fetchPkmn
+function mapDispatchToProps() {
+  fetchPkmn
 }
 
-var PokedexContainer = connect(mapStateToProps)(Pokedex)
+
+var PokedexContainer = connect(
+  mapStateToProps)(Pokedex)
 
 export default PokedexContainer
