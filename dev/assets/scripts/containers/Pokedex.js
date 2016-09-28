@@ -10,7 +10,7 @@ import Pokedex from '../components/Pokedex'
 
 const filterPkmns = (pkmns, filter = '') => {
   pkmns = _.map(pkmns, getArrayTypes);
-  
+
   if (filter.trim() == "") {
     return pkmns;
   } else {
@@ -29,7 +29,7 @@ const getArrayTypes = (pkmn) => {
 
 function mapStateToProps(state) {
   return {
-    pkmns: _.sortBy(filterPkmns(state.pkmns, state.search.text), function(o) { return o.id; })
+    pkmns: _.sortBy(filterPkmns(state.pkmns, state.search), function(o) { return o.id; })
   }
 }
 

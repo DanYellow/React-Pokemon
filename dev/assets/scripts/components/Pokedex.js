@@ -22,7 +22,6 @@ export default class Pokedex extends React.Component {
   }
 
   componentWillMount() {
-    console.log(this.props)
     for (var i = 1; i < this.lastIndexDex; i++) {
       // this.props.fetchPkmn(i);
       this.props.dispatch(fetchPkmn(i));

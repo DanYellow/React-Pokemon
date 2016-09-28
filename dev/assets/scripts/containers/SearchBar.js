@@ -8,22 +8,11 @@ import SearchBar from '../components/SearchBar'
 import { searchPkmn } from '../actions'
 
 
-function mapDispatchToProps() {
-  return {
-    searchPkmn
-  }
+const mapDispatchToProps = {
+  searchPkmn
 }
 
-// const mapDispatchToProp = dispatch => ({
-//   actions: bindActionCreators({}, dispatch)
-// });
 
-// const mapDispatchToProps = {
-//   addTodo
-// }
-
-console.log(mapDispatchToProp(), mapDispatchToProps())
-
-var SearchBarContainer = connect(null, mapDispatchToProps())(SearchBar)
+var SearchBarContainer = connect(null, mapDispatchToProps)(SearchBar)
 
 export default SearchBarContainer

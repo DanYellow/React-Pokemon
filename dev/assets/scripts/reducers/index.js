@@ -7,8 +7,6 @@ var pkmns = function (state = [], action) {
         ...state,
         { id: action.id, datas: action.datas }
       ]
-    case 'FILTER_PKMN':
-      return state;
     default:
       return state;
   }
@@ -17,8 +15,7 @@ var pkmns = function (state = [], action) {
 var search = function (state = '', action) {
   switch (action.type) {
     case 'FILTER_PKMN':
-      console.log(state, action)
-      return action;
+      return action.text;
     default:
       return state;
   }
