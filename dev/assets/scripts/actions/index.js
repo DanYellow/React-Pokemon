@@ -9,7 +9,6 @@ export const searchPkmn = function (text, hello) {
 export const receivePkmn = function (id, json) {
   return {
     type: 'FETCH_PKMN',
-    id: id,
     id,
     datas: json
   }
