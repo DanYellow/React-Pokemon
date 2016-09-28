@@ -3,12 +3,6 @@ import { combineReducers } from 'redux'
 var pkmns = function (state = [], action) {
   switch (action.type) {
     case 'FETCH_PKMN':
-      console.log(state, action)
-      // Avoid doublon
-      if (state.indexOf({ id: action.id, datas: action.datas }) > -1) {
-        return state
-      }
-
       return [
         ...state,
         { id: action.id, datas: action.datas }
@@ -23,6 +17,7 @@ var pkmns = function (state = [], action) {
 var search = function (state = '', action) {
   switch (action.type) {
     case 'FILTER_PKMN':
+      console.log(state, action)
       return action;
     default:
       return state;

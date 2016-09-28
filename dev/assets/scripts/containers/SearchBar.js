@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
 
 import SearchBar from '../components/SearchBar'
-
 
 import { searchPkmn } from '../actions'
 
@@ -13,7 +14,16 @@ function mapDispatchToProps() {
   }
 }
 
+// const mapDispatchToProp = dispatch => ({
+//   actions: bindActionCreators({}, dispatch)
+// });
 
-var SearchBarContainer = connect(null, mapDispatchToProps)(SearchBar)
+// const mapDispatchToProps = {
+//   addTodo
+// }
+
+console.log(mapDispatchToProp(), mapDispatchToProps())
+
+var SearchBarContainer = connect(null, mapDispatchToProps())(SearchBar)
 
 export default SearchBarContainer
