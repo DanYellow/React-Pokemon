@@ -21,8 +21,8 @@ const addLastestVersion = (pkmn) => {
   // pkmnVersions.unshift({"version":{"url":"http://pokeapi.co/api/v2/version/22/","name":"moon"},"game_index":5})
   // pkmnVersions.unshift({"version":{"url":"http://pokeapi.co/api/v2/version/22/","name":"sun"},"game_index":5})
 
-  // pkmn.game_indices = pkmnVersions;
-
+  // pkmn.datas.game_indices = [...pkmnVersions, {"version":{"url":"http://pokeapi.co/api/v2/version/22/","name":"x"},"game_index":5}];
+  
   return pkmn;
 }
 

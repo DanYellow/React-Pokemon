@@ -8,8 +8,6 @@ import { fetchPkmn } from '../actions'
 import Pokedex from '../components/Pokedex'
 
 
-
-
 const filterPkmns = (pkmns, filter = '') => {
   pkmns = _.map(pkmns, getArrayTypes);
   
@@ -37,11 +35,17 @@ function mapStateToProps(state) {
 
 // Crée alias de dispatch
 function mapDispatchToProps() {
-  fetchPkmn
+  return {
+    fetchPkmn
+  }
 }
 
 
+
+
 var PokedexContainer = connect(
-  mapStateToProps)(Pokedex)
+  mapStateToProps,
+  null
+)(Pokedex)
 
 export default PokedexContainer

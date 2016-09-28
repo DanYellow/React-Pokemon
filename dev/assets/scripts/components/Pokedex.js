@@ -1,4 +1,5 @@
 import React from 'react'
+import uuid from 'node-uuid'
 
 import { fetchPkmn } from '../actions'
 import PokedexItem from '../containers/PokedexItem'
@@ -8,7 +9,7 @@ export default class Pokedex extends React.Component {
   constructor (props) {
     super(props);
 
-    this.lastIndexDex = 347;
+    this.lastIndexDex = 5;
     this.maxIndexDex = 721; //721;
     // Debug mode | Work with only one datas
     this.activateInfiniteScroll = true;
@@ -21,8 +22,10 @@ export default class Pokedex extends React.Component {
   }
 
   componentWillMount() {
+    console.log(this.props)
     for (var i = 1; i < this.lastIndexDex; i++) {
-      this.props.dispatch(fetchPkmn(i));
+      this.props.fetchPkmn(i);
+      // this.props.dispatch(fetchPkmn(i));
     }
   }
 
@@ -45,7 +48,7 @@ export default class Pokedex extends React.Component {
           <SearchBar />
           <ul className="pokedex">
             {this.props.pkmns.map(pkmn =>
-              <PokedexItem key={pkmn.id} datas={pkmn.datas} />
+              <PokedexItem key={uuid.v1()} datas={pkmn.datas} />
             )}
           </ul>
         </div>

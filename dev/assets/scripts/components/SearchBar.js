@@ -10,9 +10,9 @@ export default class SearchBar extends React.Component {
   keyUp (e) {
     e.preventDefault();
     
-    this.props.dispatch(searchPkmn(this.refs.myInput.value));
-
-    // this.props.searchPkmn(this.refs.myInput.value);
+    // this.props.dispatch(searchPkmn(this.refs.myInput.value));
+    console.log("val", this.props)
+    this.props.searchPkmn(this.refs.myInput.value);
   }
 
   render() {
