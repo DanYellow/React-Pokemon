@@ -1,7 +1,6 @@
 import React from 'react'
 import uuid from 'node-uuid'
 
-import { fetchPkmn } from '../actions'
 import PokedexItem from '../containers/PokedexItem'
 import SearchBar from '../containers/SearchBar'
 
@@ -15,6 +14,10 @@ export default class Pokedex extends React.Component {
     this.activateInfiniteScroll = true;
 
     this.bindEvents(this)
+
+    this.state = {
+      hasDatas: true
+    }
   }
 
   bindEvents () {
@@ -23,8 +26,7 @@ export default class Pokedex extends React.Component {
 
   componentWillMount() {
     for (var i = 1; i < this.lastIndexDex; i++) {
-      // this.props.fetchPkmn(i);
-      this.props.dispatch(fetchPkmn(i));
+      this.props.fetchPkmn(i);
     }
   }
 
@@ -34,8 +36,8 @@ export default class Pokedex extends React.Component {
         return;
       }
 
-      for (var i = this.lastIndexDex; i < this.lastIndexDex + 5; i++) {
-        this.props.dispatch(fetchPkmn(i));
+      for (let i = this.lastIndexDex; i < this.lastIndexDex + 5; i++) {
+        this.props.fetchPkmn(i);
       }
       this.lastIndexDex += 5;
     }
@@ -45,11 +47,11 @@ export default class Pokedex extends React.Component {
     return (
         <div className="pokedex__container">
           <SearchBar />
-          <ul className="pokedex">
+          {this.state.hasDatas && <ul className="pokedex">
             {this.props.pkmns.map(pkmn =>
               <PokedexItem key={uuid.v1()} datas={pkmn.datas} />
             )}
-          </ul>
+          </ul>}
         </div>
     );
   }

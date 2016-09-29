@@ -17,7 +17,7 @@ export const receivePkmn = function (id, json) {
 export const detailsPkmn = function (datas) {
   return {
     type: 'DETAILS_PKMN',
-    datas: datas
+    datas
   }
 }
 
@@ -31,3 +31,11 @@ export const fetchPkmn = function (idDex) {
       })
   }
 }
+
+// export const loadingPkmns = function (isLoading) {
+//   return {
+//     type: 'LOADING_PKMN',
+//     isLoading
+//   }
+// }
+

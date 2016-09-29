@@ -2,8 +2,6 @@ import React from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
 
-import { detailsPkmn } from '../actions'
-
 export default class PokedexItem extends React.Component {
   constructor (props) {
     super(props);
@@ -11,7 +9,7 @@ export default class PokedexItem extends React.Component {
 
   pkmnSelected (pkmn, e) {
     e.preventDefault();
-    this.props.dispatch(detailsPkmn(pkmn));
+    this.props.detailsPkmn(pkmn);
   }
 
   render() {

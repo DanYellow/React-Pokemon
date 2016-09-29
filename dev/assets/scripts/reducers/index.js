@@ -15,6 +15,7 @@ var pkmns = function (state = [], action) {
 var search = function (state = '', action) {
   switch (action.type) {
     case 'FILTER_PKMN':
+      console.log('acti', state)
       return action.text;
     default:
       return state;

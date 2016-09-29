@@ -1,5 +1,4 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import _ from 'lodash'
@@ -22,7 +21,7 @@ const getArrayTypes = (pkmn) => {
   pkmn.datas.typesString = _.reverse(_.map(pkmn.datas.types, 'type.name'));
 
   if (pkmn.datas.typesString.length == 2) {
-    pkmn.datas.typesString[1] = pkmn.datas.typesString[1] + '-border'
+    pkmn.datas.typesString[1] = pkmn.datas.typesString[1] + '-border';
   }
   return pkmn;
 }
@@ -34,7 +33,7 @@ function mapStateToProps(state) {
 }
 
 // Crée alias de dispatch
-function mapDispatchToProps() {
+function mapDispatchToProps(dispatch, ownProps) {
   return {
     fetchPkmn
   }
@@ -45,7 +44,7 @@ function mapDispatchToProps() {
 
 var PokedexContainer = connect(
   mapStateToProps,
-  null
+  mapDispatchToProps()
 )(Pokedex)
 
 export default PokedexContainer
