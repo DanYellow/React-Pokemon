@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import _ from 'lodash'
 
-import { fetchPkmn } from '../actions'
+import { fetchPkmn, loadingPkmn } from '../actions'
 import Pokedex from '../components/Pokedex'
 
 
@@ -35,7 +35,8 @@ function mapStateToProps(state) {
 // Crée alias de dispatch
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    fetchPkmn
+    fetchPkmn,
+    loadingPkmn
   }
 }
 

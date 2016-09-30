@@ -28,6 +28,8 @@ export default class Pokedex extends React.Component {
     for (var i = 1; i < this.lastIndexDex; i++) {
       this.props.fetchPkmn(i);
     }
+
+    this.props.loadingPkmn(true)
   }
 
   scrollListener () {

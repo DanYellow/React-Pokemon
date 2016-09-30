@@ -32,10 +32,10 @@ export const fetchPkmn = function (idDex) {
   }
 }
 
-// export const loadingPkmns = function (isLoading) {
-//   return {
-//     type: 'LOADING_PKMN',
-//     isLoading
-//   }
-// }
+export const loadingPkmn = function (isLoading) {
+  return {
+    type: 'LOADING_PKMN',
+    isLoading
+  }
+}
 

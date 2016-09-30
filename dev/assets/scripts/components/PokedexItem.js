@@ -13,7 +13,7 @@ export default class PokedexItem extends React.Component {
   }
 
   render() {
-    var datas = this.props.datas;
+    var { datas } = this.props;
     
     return (
       <li className={classNames('pokedex-item', datas.typesString)} >
