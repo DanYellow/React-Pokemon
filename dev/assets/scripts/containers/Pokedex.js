@@ -1,17 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import _ from 'lodash'
 
 import { fetchPkmn, loadingPkmn } from '../actions'
 import Pokedex from '../components/Pokedex'
+import { getFilteredPokemon } from '../selectors/'
+
 
 
 
 function mapStateToProps(state) {
   return {
     pkmns: state.pkmns,
-    filteredPkmns: state.filteredPkmns
+    filteredPkmns: getFilteredPokemon(state),
+    searchTerm: state.search
   }
 }
 

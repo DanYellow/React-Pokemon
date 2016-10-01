@@ -18,6 +18,7 @@
     "react-dom": "^0.14.7",
     "react-redux": "^4.2.1",
     "redux": "^3.2.1",
+    "reselect": "^2.5.4",
     "style-loader": "^0.13.1"
   },
   "devDependencies": {

@@ -1,13 +1,6 @@
 import { combineReducers } from 'redux'
 
 
-const filterPkmns = (pkmns, filter = '') => {
-  if (filter.trim() == "") {
-    return pkmns;
-  } else {
-    return pkmns.filter(pkmn => pkmn.datas.name.indexOf(filter) > -1)
-  }
-}
 
 const getArrayTypes = (pkmn) => {
   pkmn.datas.typesString = _.reverse(_.map(pkmn.datas.types, 'type.name'));
@@ -34,17 +27,14 @@ const pkmns = (state = [], action) => {
 }
 
 
-
-
-const filteredPkmns = (state = pkmns(undefined, 'FILTER_PKMN'), action) => {
-  switch (action.type) {
-    case 'FILTER_PKMN':
-      console.log("reer", { ...state, ...pkmns(undefined, action)}, state, action)
-      return [...state, ...pkmns(undefined, action)]; //_.sortBy(filterPkmns(state, action.text), function(o) { return o.id; });
-    default:
-      return state;
-  }
-}
+// const filteredPkmns = (state = pkmns(undefined, 'FILTER_PKMN'), action) => {
+//   switch (action.type) {
+//     case 'FILTER_PKMN':
+//       return [...state, ...pkmns(undefined, action)];
+//     default:
+//       return state;
+//   }
+// }
 
 
 const search = function (state = '', action) {
@@ -61,6 +51,7 @@ const pkmn = function (state = {}, action) {
     case 'DETAILS_PKMN':
       let pkmn = { ...action.datas }
       // Add missing game covers
+      // @TODO add Pokemon Rubis Omega and Sapphire Alpha
       pkmn.game_indices = [
         {"version":{"url":"http://pokeapi.co/api/v2/version/22/","name":"sun"},"game_index":5},
         {"version":{"url":"http://pokeapi.co/api/v2/version/22/","name":"moon"},"game_index":5},
@@ -79,8 +70,7 @@ const pkmn = function (state = {}, action) {
 const reducers = combineReducers({
   pkmns,
   search,
-  pkmn,
-  filteredPkmns
+  pkmn
 });
 
 

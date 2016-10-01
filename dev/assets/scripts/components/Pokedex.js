@@ -8,7 +8,7 @@ export default class Pokedex extends React.Component {
   constructor (props) {
     super(props);
 
-    this.lastIndexDex = 5;
+    this.lastIndexDex = 25;
     this.maxIndexDex = 721;
     // Debug mode | Work with only one datas
     this.activateInfiniteScroll = true;
@@ -47,24 +47,46 @@ export default class Pokedex extends React.Component {
 
   render() {
     let pkmnsSrc = this.props.pkmns;
-    // if (this.props.filteredPkmns.length) {
-    //   pkmnsSrc = this.props.filteredPkmns;
-    // }
-
+    let { searchTerm, filteredPkmns } = this.props;
+    if (filteredPkmns.length || searchTerm !== '') {
+      pkmnsSrc = this.props.filteredPkmns;
+    }
+    
     return (
         <div className="pokedex__container">
           <SearchBar />
-          {this.state.hasDatas && <ul className="pokedex">
-            {pkmnsSrc.map(pkmn =>
-              <PokedexItem key={uuid.v1()} datas={pkmn.datas} />
-            )}
-          </ul>}
+          { filteredPkmns.length > 0 && this._renderPokemon(pkmnsSrc) }
+          { filteredPkmns.length == 0 && this._renderNoResultScreen(pkmnsSrc) }
         </div>
     );
+  }
+
+  _renderNoResultScreen () {
+    const url =  require('./../../images/pokedex-no-results.gif');
+    return (
+      <figure style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <img width={130} src={url} />
+        <figcation>No results</figcation>
+      </figure>
+    )
+  }
+
+  _renderPokemon(datas) {
+    return ( 
+      <ul className="pokedex">
+        {datas.map(pkmn =>
+          <PokedexItem key={uuid.v1()} datas={pkmn.datas} />
+        )}
+      </ul> 
+    )
   }
 }
 
 
 Pokedex.propTypes = {
-  pkmns: React.PropTypes.array.isRequired
+  filteredPkmns: React.PropTypes.array.isRequired,
+  pkmns: React.PropTypes.array.isRequired,
+  searchTerm: React.PropTypes.string,
 }
+
+// this.state.hasDatas && 

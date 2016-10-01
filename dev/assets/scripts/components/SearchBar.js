@@ -15,8 +15,8 @@ export default class SearchBar extends React.Component {
 
   render() {
     return (
-      <form>
-        <legend>{ this.props.pkmns.length } Pokemon founded</legend>
+      <form> 
+        <legend>{ (this.props.filteredPkmns.length || this.props.searchTerm !== '') || this.props.pkmns.length } Pokemon founded</legend>
         <input 
         ref="myInput"
         type="search"
@@ -26,3 +26,7 @@ export default class SearchBar extends React.Component {
     );
   }
 }
+
+// 
+// 
+// ref={(c) => this.myInput = c}

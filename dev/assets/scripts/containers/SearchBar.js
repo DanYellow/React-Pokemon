@@ -4,12 +4,14 @@ import { connect } from 'react-redux'
 
 import SearchBar from '../components/SearchBar'
 import { searchPkmn } from '../actions'
+import { getFilteredPokemon } from '../selectors/'
 
 
 function mapStateToProps(state) {
   return {
     pkmns: state.pkmns,
-    filteredPkmns: state.filteredPkmns
+    filteredPkmns: getFilteredPokemon(state),
+    searchTerm: state.search
   }
 }
 
