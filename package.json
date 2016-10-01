@@ -27,6 +27,7 @@
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-react-hmre": "^1.1.1",
+    "babel-preset-stage-2": "^6.16.0",
     "babel-register": "^6.3.13",
     "cross-env": "^1.0.7",
     "expect": "^1.8.0",

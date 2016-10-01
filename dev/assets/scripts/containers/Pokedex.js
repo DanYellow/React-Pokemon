@@ -7,33 +7,16 @@ import { fetchPkmn, loadingPkmn } from '../actions'
 import Pokedex from '../components/Pokedex'
 
 
-const filterPkmns = (pkmns, filter = '') => {
-  pkmns = _.map(pkmns, getArrayTypes);
-
-  if (filter.trim() == "") {
-    return pkmns;
-  } else {
-    return pkmns.filter(pkmn => pkmn.datas.name.indexOf(filter) > -1)
-  }
-}
-
-const getArrayTypes = (pkmn) => {
-  pkmn.datas.typesString = _.reverse(_.map(pkmn.datas.types, 'type.name'));
-
-  if (pkmn.datas.typesString.length == 2) {
-    pkmn.datas.typesString[1] = pkmn.datas.typesString[1] + '-border';
-  }
-  return pkmn;
-}
 
 function mapStateToProps(state) {
   return {
-    pkmns: _.sortBy(filterPkmns(state.pkmns, state.search), function(o) { return o.id; })
+    pkmns: state.pkmns,
+    filteredPkmns: state.filteredPkmns
   }
 }
 
 // Crée alias de dispatch
-function mapDispatchToProps(dispatch, ownProps) {
+function mapDispatchToProps(dispatch) {
   return {
     fetchPkmn,
     loadingPkmn

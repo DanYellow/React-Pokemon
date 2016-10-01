@@ -6,11 +6,18 @@ import SearchBar from '../components/SearchBar'
 import { searchPkmn } from '../actions'
 
 
+function mapStateToProps(state) {
+  return {
+    pkmns: state.pkmns,
+    filteredPkmns: state.filteredPkmns
+  }
+}
+
 const mapDispatchToProps = {
   searchPkmn
 }
 
 
-var SearchBarContainer = connect(null, mapDispatchToProps)(SearchBar)
+var SearchBarContainer = connect(mapStateToProps, mapDispatchToProps)(SearchBar)
 
 export default SearchBarContainer

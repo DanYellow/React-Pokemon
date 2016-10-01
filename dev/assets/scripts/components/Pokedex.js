@@ -9,7 +9,7 @@ export default class Pokedex extends React.Component {
     super(props);
 
     this.lastIndexDex = 5;
-    this.maxIndexDex = 721; //721;
+    this.maxIndexDex = 721;
     // Debug mode | Work with only one datas
     this.activateInfiniteScroll = true;
 
@@ -25,7 +25,7 @@ export default class Pokedex extends React.Component {
   }
 
   componentWillMount() {
-    for (var i = 1; i < this.lastIndexDex; i++) {
+    for (let i = 1; i < this.lastIndexDex; i++) {
       this.props.fetchPkmn(i);
     }
 
@@ -46,11 +46,16 @@ export default class Pokedex extends React.Component {
   }
 
   render() {
+    let pkmnsSrc = this.props.pkmns;
+    // if (this.props.filteredPkmns.length) {
+    //   pkmnsSrc = this.props.filteredPkmns;
+    // }
+
     return (
         <div className="pokedex__container">
           <SearchBar />
           {this.state.hasDatas && <ul className="pokedex">
-            {this.props.pkmns.map(pkmn =>
+            {pkmnsSrc.map(pkmn =>
               <PokedexItem key={uuid.v1()} datas={pkmn.datas} />
             )}
           </ul>}

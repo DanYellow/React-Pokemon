@@ -11,6 +11,6 @@ const mapDispatchToProps = {
 }
 
 
-var PokedexItemContainer = connect(null, mapDispatchToProps)(PokedexItem)
+const PokedexItemContainer = connect(null, mapDispatchToProps)(PokedexItem)
 
 export default PokedexItemContainer
