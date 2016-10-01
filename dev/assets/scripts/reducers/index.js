@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 
+import * as ActionTypes from '../constants/ActionTypes'
 
 
 const getArrayTypes = (pkmn) => {
@@ -14,12 +15,15 @@ const getArrayTypes = (pkmn) => {
 
 const pkmns = (state = [], action) => {
   switch (action.type) {
-    case 'FETCH_PKMN':
+    case ActionTypes.FETCH_PKMN:
+      if (state.some(function(e){ e.id == action.datas.id })) {
+        return state;
+      }
       return _.map(_.sortBy([
         ...state,
         { id: action.id, datas: action.datas }
       ], function(pkmn) { return pkmn.id; }), getArrayTypes);
-    case 'FILTER_PKMN':
+    case ActionTypes.FILTER_PKMN:
       return state;
     default:
       return state;
@@ -39,7 +43,7 @@ const pkmns = (state = [], action) => {
 
 const search = function (state = '', action) {
   switch (action.type) {
-    case 'FILTER_PKMN':
+    case ActionTypes.FILTER_PKMN:
       return action.text;
     default:
       return state;
@@ -48,7 +52,7 @@ const search = function (state = '', action) {
 
 const pkmn = function (state = {}, action) {
   switch (action.type) {
-    case 'DETAILS_PKMN':
+    case ActionTypes.DETAILS_PKMN:
       let pkmn = { ...action.datas }
       // Add missing game covers
       // @TODO add Pokemon Rubis Omega and Sapphire Alpha
@@ -66,12 +70,25 @@ const pkmn = function (state = {}, action) {
   }
 }
 
+const isLoadingPkmn = function (state = false, action) {
+  switch (action.type) {
+    case ActionTypes.LOADING_PKMN:
+      return true;
+    case ActionTypes.ENDLOADING_PKMN:
+      return false;
+    default:
+      return false;
+  }
+}
+
 
 const reducers = combineReducers({
   pkmns,
   search,
-  pkmn
+  pkmn,
+  isLoadingPkmn
 });
 
 
 export default reducers
+

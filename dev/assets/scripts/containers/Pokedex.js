@@ -13,7 +13,8 @@ function mapStateToProps(state) {
   return {
     pkmns: state.pkmns,
     filteredPkmns: getFilteredPokemon(state),
-    searchTerm: state.search
+    searchTerm: state.search,
+    isLoading: state.isLoadingPkmn
   }
 }
 

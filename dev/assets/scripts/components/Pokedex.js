@@ -28,8 +28,6 @@ export default class Pokedex extends React.Component {
     for (let i = 1; i < this.lastIndexDex; i++) {
       this.props.fetchPkmn(i);
     }
-
-    this.props.loadingPkmn(true)
   }
 
   scrollListener () {
@@ -55,8 +53,9 @@ export default class Pokedex extends React.Component {
     return (
         <div className="pokedex__container">
           <SearchBar />
-          { filteredPkmns.length > 0 && this._renderPokemon(pkmnsSrc) }
-          { filteredPkmns.length == 0 && this._renderNoResultScreen(pkmnsSrc) }
+          { this.props.isLoading && this._renderLoading(pkmnsSrc) }
+          { (filteredPkmns.length > 0 && !this.props.isLoading) && this._renderPokemon(pkmnsSrc) }
+          { (filteredPkmns.length == 0 && searchTerm !== '') && this._renderNoResultScreen(pkmnsSrc) }
         </div>
     );
   }
@@ -67,6 +66,16 @@ export default class Pokedex extends React.Component {
       <figure style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <img width={130} src={url} />
         <figcation>No results</figcation>
+      </figure>
+    )
+  }
+
+  _renderLoading () {
+    const url =  require('./../../images/pika-loader-mini.gif');
+    return (
+      <figure style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <img width={130} src={url} />
+        <figcation>Loading</figcation>
       </figure>
     )
   }
