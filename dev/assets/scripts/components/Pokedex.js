@@ -30,19 +30,6 @@ export default class Pokedex extends React.Component {
     }
   }
 
-  scrollListener () {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-      if (this.lastIndexDex >= this.maxIndexDex || this.activateInfiniteScroll == false) {
-        return;
-      }
-
-      for (let i = this.lastIndexDex; i < this.lastIndexDex + 5; i++) {
-        this.props.fetchPkmn(i);
-      }
-      this.lastIndexDex += 5;
-    }
-  }
-
   render() {
     let pkmnsSrc = this.props.pkmns;
     let { searchTerm, filteredPkmns } = this.props;

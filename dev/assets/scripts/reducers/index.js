@@ -16,7 +16,7 @@ const getArrayTypes = (pkmn) => {
 const pkmns = (state = [], action) => {
   switch (action.type) {
     case ActionTypes.FETCH_PKMN:
-      if (state.some(function(e){ e.id == action.datas.id })) {
+      if (state.some(function(e){ return e.id == action.datas.id; })) {
         return state;
       }
       return _.map(_.sortBy([
@@ -31,16 +31,6 @@ const pkmns = (state = [], action) => {
 }
 
 
-// const filteredPkmns = (state = pkmns(undefined, 'FILTER_PKMN'), action) => {
-//   switch (action.type) {
-//     case 'FILTER_PKMN':
-//       return [...state, ...pkmns(undefined, action)];
-//     default:
-//       return state;
-//   }
-// }
-
-
 const search = function (state = '', action) {
   switch (action.type) {
     case ActionTypes.FILTER_PKMN:
@@ -49,6 +39,7 @@ const search = function (state = '', action) {
       return state;
   }
 }
+
 
 const pkmn = function (state = {}, action) {
   switch (action.type) {
@@ -69,6 +60,7 @@ const pkmn = function (state = {}, action) {
       return state;
   }
 }
+
 
 const isLoadingPkmn = function (state = false, action) {
   switch (action.type) {
