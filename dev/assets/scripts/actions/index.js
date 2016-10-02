@@ -25,7 +25,7 @@ export const detailsPkmn = function (datas) {
   }
 }
 
-const foo = _.debounce(isFinishLoading, 1000, { 'trailling': true, 'leading': false });
+const isFinishLoadingDebounce = _.debounce(isFinishLoading, 1000, { 'trailling': true, 'leading': false });
 
 
 export const fetchPkmn = function (idDex) {
@@ -35,7 +35,7 @@ export const fetchPkmn = function (idDex) {
     return fetch(`http://pokeapi.co/api/v2/pokemon/${idDex}/`, { 'cache': 'force-cache' })
       .then(response => response.json())
       .then(function(json) {
-        foo();
+        isFinishLoadingDebounce();
         return dispatch(receivePkmn(idDex, json))
       })
   }

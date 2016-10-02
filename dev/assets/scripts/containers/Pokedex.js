@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { fetchPkmn, loadingPkmn } from '../actions'
 import Pokedex from '../components/Pokedex'
-import { getFilteredPokemon } from '../selectors/'
+import { getFilteredPokemon } from '../selectors'
 
 
 

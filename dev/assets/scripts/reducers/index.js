@@ -50,6 +50,8 @@ const pkmn = function (state = {}, action) {
       pkmn.game_indices = [
         {"version":{"url":"http://pokeapi.co/api/v2/version/22/","name":"sun"},"game_index":5},
         {"version":{"url":"http://pokeapi.co/api/v2/version/22/","name":"moon"},"game_index":5},
+        {"version":{"url":"http://pokeapi.co/api/v2/version/22/","name":"omega-ruby"},"game_index":5},
+        {"version":{"url":"http://pokeapi.co/api/v2/version/22/","name":"alpha-sapphire"},"game_index":5},
         {"version":{"url":"http://pokeapi.co/api/v2/version/22/","name":"x"},"game_index":5},
         {"version":{"url":"http://pokeapi.co/api/v2/version/22/","name":"y"},"game_index":5},
         ...pkmn.game_indices

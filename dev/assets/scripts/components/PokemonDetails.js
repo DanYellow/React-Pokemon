@@ -1,6 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
+import uuid from 'node-uuid'
 
 import { fetchPkmn } from '../actions'
 
@@ -57,7 +58,7 @@ export default class PokemonDetails extends React.Component {
           <h3>Appears in </h3>
           <div style={Styles.gameCoversContainer}>
             {this.datas.game_indices.map((data, index) =>
-              <GameVersion name={data.version.name} key={Date.now() + index}/>
+              <GameVersion name={data.version.name} key={uuid.v1()}/>
             )}
           </div>
 

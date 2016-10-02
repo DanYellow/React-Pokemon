@@ -139,7 +139,7 @@
   /*flex-basis: 20%;*/
   width: 150px;
   height: 150px;
-  border: 3px solid transparent;
+  border: 3px solid white;
 
   a {
     display: block;
@@ -225,6 +225,48 @@
 
       &-border {
         border-color: #ff7cd8;
+      }
+    }
+    &.dark {
+      background: linear-gradient(to bottom, #131313 0%, #4c4c4c 100%);
+
+      &-border {
+        border-color: #131313;
+      }
+    }
+    &.rock {
+      background: linear-gradient(to bottom, #f0b7a1 0%, #8c3310 100%);
+
+      &-border {
+        border-color: #8c3310;
+      }
+    }
+    &.steel {
+      background: linear-gradient(to bottom, #c9dae5 0%, #b5c6d0 100%);
+
+      &-border {
+        border-color: #b5c6d0;
+      }
+    }
+    &.ice {
+      background: linear-gradient(to bottom, #9ee8fa 0%, #d6f9ff 100%);
+
+      &-border {
+        border-color: #d6f9ff;
+      }
+    }
+    &.fighting {
+      background: linear-gradient(to bottom, #f6e6b4 0%, #ed9017 100%);
+
+      &-border {
+        border-color: #ed9017;
+      }
+    }
+    &.normal {
+      background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 100%);
+
+      &-border {
+        border-color: #f6f6f6;
       }
     }
   }

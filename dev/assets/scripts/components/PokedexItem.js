@@ -12,9 +12,13 @@ export default class PokedexItem extends React.Component {
     this.props.detailsPkmn(pkmn);
   }
 
+  componentDidMount() {
+    console.log("componentDidMount")
+  }
+
   render() {
     const { datas } = this.props;
-    
+
     return (
       <li className={classNames('pokedex-item', datas.typesString)} >
         <a href="#" onClick={this.pkmnSelected.bind(this, datas)}>

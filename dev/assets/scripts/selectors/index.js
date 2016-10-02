@@ -14,7 +14,7 @@ const filterPkmns = (pkmns, filter = '') => {
   if (filter.trim() == "") {
     return pkmns;
   } else {
-    searchValue = filter.toLowerCase()
+    searchValue = filter.toLowerCase();
 
     if ((new RegExp(/^\d+$/).test(searchValue))) {
       // Search by id
@@ -22,7 +22,7 @@ const filterPkmns = (pkmns, filter = '') => {
         if (!pkmn.datas.id) { return; }
         return pkmn.datas.id == searchValue;
       });
-    } else if ((new RegExp(/tseho/gi).test(searchValue))) {
+    } else if ((new RegExp(/^tseho$/gi).test(searchValue))) {
       // Return only 1G Pokemon
       return pkmns.filter(function(pkmn) {
         if (!pkmn.datas.id) { return; }
