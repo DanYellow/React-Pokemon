@@ -12,10 +12,6 @@ export default class PokedexItem extends React.Component {
     this.props.detailsPkmn(pkmn);
   }
 
-  componentDidMount() {
-    console.log("componentDidMount")
-  }
-
   render() {
     const { datas } = this.props;
 

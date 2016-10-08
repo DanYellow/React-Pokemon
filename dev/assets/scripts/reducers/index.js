@@ -6,9 +6,9 @@ import * as ActionTypes from '../constants/ActionTypes'
 const getArrayTypes = (pkmn) => {
   pkmn.datas.typesString = _.reverse(_.map(pkmn.datas.types, 'type.name'));
 
-  if (pkmn.datas.typesString.length == 2) {
-    pkmn.datas.typesString[1] = pkmn.datas.typesString[1] + '-border';
-  }
+  // if (pkmn.datas.typesString.length == 2) {
+  //   pkmn.datas.typesString[1] = pkmn.datas.typesString[1] + '-border';
+  // }
   return pkmn;
 }
 
