@@ -25,11 +25,12 @@ export default class PkmnTableTypes extends React.Component {
   _renderTableEffectiveness (datas) {
     var template = [];
     var titles = {
-      "1x" : "Damaged normally by",
+      "4x" : "Strongly weak to",
       "2x" : "Weak to",
-      "0x" : "Immune to",
+      "1x" : "Damaged normally by",
       "0.5x" : "Resistant to",
-      "0.25x" : "Strongly resistant to"
+      "0.25x" : "Strongly resistant to",
+      "0x" : "Immune to",
     }
     for (var coefficient in _.groupBy(datas, 'effetiveness')) {
       template.push(

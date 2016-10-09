@@ -18,7 +18,7 @@ export default class SearchBar extends React.Component {
       <form> 
         <legend>{ (this.props.filteredPkmns.length || this.props.searchTerm !== '') || this.props.pkmns.length } Pokemon founded!</legend>
         <input 
-        ref="myInput"
+        ref={(c) => this.myInput = c}
         type="search"
         placeholder="Enter a name" 
         onKeyUp={this.keyUp.bind(this)} />
@@ -26,7 +26,3 @@ export default class SearchBar extends React.Component {
     );
   }
 }
-
-// 
-// 
-// ref={(c) => this.myInput = c}

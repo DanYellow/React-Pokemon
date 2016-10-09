@@ -8,7 +8,7 @@ export default class Pokedex extends React.Component {
   constructor (props) {
     super(props);
 
-    this.lastIndexDex = 5;
+    this.lastIndexDex = 386;
     this.maxIndexDex = 721;
     // Debug mode | Work with only one datas
     this.activateInfiniteScroll = true;
